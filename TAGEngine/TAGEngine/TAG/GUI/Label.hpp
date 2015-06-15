@@ -1,0 +1,32 @@
+#pragma once
+
+#include "Component.hpp"
+#include "ResourceIdentifiers.hpp"
+#include "ResourceHodler.hpp"
+
+#include <SFML/Graphics/Text.hpp>
+
+#include <string>
+#include <memory>
+
+namespace GUI
+{
+
+class Label : public Component
+{
+public:
+    typedef std::shared_ptr<Lable> Ptr;
+	
+	Label(const std::string& text, const FontHolder& fonts);
+	virtual bool isSelectable() const;
+	void setText(const std::string& text);
+	
+	virtual void handleEvent(const sf::Event& event);
+	
+private:
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	
+	sf::Text mText;
+};
+
+}
