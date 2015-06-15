@@ -62,7 +62,7 @@ void Container::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	    target.draw(*child, states);
 }
 
-void Container::hasSelection() const
+bool Container::hasSelection() const
 {
     return mSelectedChild >= 0;
 }

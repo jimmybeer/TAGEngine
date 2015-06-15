@@ -16,4 +16,4 @@ std::string toString(const T& value);
 void centerOrigin(sf::Sprite& sprite);
 void centerOrigin(sf::Text& text);
 
-#include <Utility.inl>
+#include "Utility.inl"

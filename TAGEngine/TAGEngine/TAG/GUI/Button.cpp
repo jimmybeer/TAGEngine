@@ -28,7 +28,7 @@ void Button::setCallback(Callback callback)
     mCallback = std::move(callback);
 }
 
-void Button::setText(Const std::string& text)
+void Button::setText(const std::string& text)
 {
     mText.setString(text);
 	centerOrigin(mText);
@@ -101,7 +101,7 @@ void Button::deactivate()
 void Button::handleEvent(const sf::Event&)
 {}
 
-void Button::draw(sf::RenderTarget& target, sf::RenderStates) const
+void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
 	target.draw(mSprite, states);

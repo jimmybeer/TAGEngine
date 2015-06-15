@@ -15,7 +15,7 @@ public:
 	
 	virtual void draw();
 	virtual bool update(sf::Time dt);
-	virtual vool handleEvent(const sf::Event& event);
+	virtual bool handleEvent(const sf::Event& event);
 	
 private:
 	

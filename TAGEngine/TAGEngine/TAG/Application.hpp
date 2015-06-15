@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "InputHandler.hpp"
 #include "StateStack.hpp"

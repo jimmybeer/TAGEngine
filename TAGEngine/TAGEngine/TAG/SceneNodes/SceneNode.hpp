@@ -25,7 +25,9 @@ public:
 	sf::Transform getWorldTransform() const;
 	
 	void onCommand(const Command& command, sf::Time dt);
-	virtual unsigned int getCategory() const;
+    virtual unsigned int getCategory() const;
+    
+    void debugAction(const std::string& text);
 	
 private:
     virtual void updateCurrent(sf::Time dt);

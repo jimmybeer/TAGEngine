@@ -25,9 +25,9 @@ MenuState::MenuState(StateStack& stack, Context context)
 	});
 	
 	auto settingsButton = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
-	settings->setPosition(100, 300);
-	settings->setText("Settings");
-	settings->setCallback([this] ()
+	settingsButton->setPosition(100, 300);
+	settingsButton->setText("Settings");
+	settingsButton->setCallback([this] ()
 	{
 	    requestStackPush(States::Settings);
 	});

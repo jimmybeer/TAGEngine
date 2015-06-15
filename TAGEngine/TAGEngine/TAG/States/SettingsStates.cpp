@@ -1,4 +1,4 @@
-#include "SettingsState.hpp"
+#include "SettingsStates.hpp"
 #include "Utility.hpp"
 #include "ResourceHolder.hpp"
 

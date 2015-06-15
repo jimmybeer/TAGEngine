@@ -6,7 +6,7 @@ StateStack::StateStack(State::Context context)
  : mStack()
  , mPendingList()
  , mContext(context)
- , mFactories
+ , mFactories()
 {}
 
 void StateStack::update(sf::Time dt)

@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Texture.hpp>
 
 #include <array>
+#include <map>
 
 // Forward declaration
 namespace sf
@@ -28,6 +29,13 @@ public:
 	SceneNode* getLayer(const std::string& id);
 	
 protected:
+    enum Layer
+    {
+        Background,
+        Air,
+        LayerCount
+    };
+    
     sf::RenderWindow& mWindow;
 	sf::View mWorldView;
 	
@@ -36,5 +44,5 @@ protected:
 	std::map<std::string, int> mLayerId;
 	CommandQueue mCommandQueue;
 	
-	sf::FloatRect worldBounds;
+	sf::FloatRect mWorldBounds;
 };

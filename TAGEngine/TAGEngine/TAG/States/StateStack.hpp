@@ -27,7 +27,7 @@ public:
 		Clear
 	};
 	
-	explicit StateStatck(State::Context context);
+	explicit StateStack(State::Context context);
     
 	template <typename T>
 	void registerState(States::ID stateID);
@@ -50,7 +50,7 @@ private:
 	{
 	    explicit PendingChange(Action action, States::ID stateID = States::None);
 	    Action action;
-		States::ID state:ID;
+        States::ID stateID;
 	};
 	
 	std::vector<State::Ptr> mStack;

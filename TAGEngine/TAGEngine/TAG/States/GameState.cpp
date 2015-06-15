@@ -3,7 +3,7 @@
 GameState::GameState(StateStack& stack, Context context)
  : State(stack, context)
  , mWorld(*context.window)
- , mInputHandler(*context.InputHandler)
+ , mInputHandler(*context.inputHandler)
 {}
 
 void GameState::draw()
@@ -16,7 +16,7 @@ bool GameState::update(sf::Time dt)
     mWorld.update(dt);
 	
 	CommandQueue& commands = mWorld.getCommandQueue();
-	mInputHandler.handleRealtimeInputs(commands);
+	mInputHandler.handleRealTimeInput(commands);
 	
 	return true;
 }

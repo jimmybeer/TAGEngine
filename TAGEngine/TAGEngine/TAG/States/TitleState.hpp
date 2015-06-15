@@ -19,5 +19,5 @@ private:
 	sf::Text mText;
 	
 	bool mShowText;
-	sf::Time mTextEffectTime
+    sf::Time mTextEffectTime;
 };

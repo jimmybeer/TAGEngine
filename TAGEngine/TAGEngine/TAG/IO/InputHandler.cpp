@@ -1,10 +1,10 @@
 #include "InputHandler.hpp"
 #include "CommandQueue.hpp"
+#include "SceneNode.hpp"
 
 #include <map>
 #include <string>
 #include <algorithm>
-#include <iostream>
 
 struct DebugAction
 {
@@ -13,9 +13,9 @@ struct DebugAction
 	{
 	}
 
-	void operator() (InputHandler& io, sf::Time) const
+	void operator() (SceneNode& sn, sf::Time) const
 	{
-		io.debugAction(mText);
+		sn.debugAction(mText);
 	}
 
 	std::string mText;
@@ -33,7 +33,7 @@ InputHandler::InputHandler()
 	
     for(auto& pair : mActionBinding)
 	{
-        pair.second.category = Category::PlayerAircraft;
+        pair.second.category = 0;
 	}
 }
 
@@ -43,21 +43,21 @@ void InputHandler::handleEvent(const sf::Event& event, CommandQueue& commands)
 	{
 	    // Check if pressed key appears in the key binding, trigger command if so
 		auto found = mKeyBinding.find(event.key.code);
-		if(found != mKeyBinding.end() && !isRealtimeAction(found->second))
+		if(found != mKeyBinding.end() && !isRealTimeAction(found->second))
 		{
 		    commands.push(mActionBinding[found->second]);
 		}
 	}
 }
 
-void InputHandler::handleRealtimeInput(CommandQueue& commands)
+void InputHandler::handleRealTimeInput(CommandQueue& commands)
 {
     // Traverse all assigned keys and check if they are pressed
-	for(auto pair: mKeyBindings)
+	for(auto pair: mKeyBinding)
 	{
-	    if(sf::Keyboard::isKeyPressed(pair.first) && isRealtimeAction(pair.second))
+	    if(sf::Keyboard::isKeyPressed(pair.first) && isRealTimeAction(pair.second))
 		{
-		    commands.push(mActionBinding[pair->second]);
+		    commands.push(mActionBinding[pair.second]);
 		}
 	}
 }
@@ -65,11 +65,11 @@ void InputHandler::handleRealtimeInput(CommandQueue& commands)
 void InputHandler::assignKey(Action action, sf::Keyboard::Key key)
 {
     // Remove all keys that already map to action
-	for(auto itr = mKeyBindings.begin(); itr != mKeyBindings.end(); }
+	for(auto itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )
 	{
 	    if(itr->second == action)
 		{
-		    mKeyBindings.erase(itr++);
+		    mKeyBinding.erase(itr++);
 		}
 		else
 		{
@@ -78,7 +78,7 @@ void InputHandler::assignKey(Action action, sf::Keyboard::Key key)
 	}
 	
 	// Insert new binding
-	mKeyBindings[key] = action;
+	mKeyBinding[key] = action;
 }
 
 sf::Keyboard::Key InputHandler::getAssignedKey(Action action) const
@@ -96,10 +96,10 @@ sf::Keyboard::Key InputHandler::getAssignedKey(Action action) const
 
 void InputHandler::initialiseActions()
 {
-    mActionBinding[MoveLeft].action	 = derivedAction<InputHandler>(DebugAction("MoveLeft Triggered"));
-    mActionBinding[MoveRight].action = derivedAction<InputHandler>(DebugAction("MoveRight Triggered"));
-    mActionBinding[MoveUp].action    = derivedAction<InputHandler>(DebugAction("MoveUp Triggered"));
-    mActionBinding[MoveDown].action  = derivedAction<InputHandler>(DebugAction("MoveDown Triggered"));
+    mActionBinding[MoveLeft].action	 = derivedAction<SceneNode>(DebugAction("MoveLeft Triggered"));
+    mActionBinding[MoveRight].action = derivedAction<SceneNode>(DebugAction("MoveRight Triggered"));
+    mActionBinding[MoveUp].action    = derivedAction<SceneNode>(DebugAction("MoveUp Triggered"));
+    mActionBinding[MoveDown].action  = derivedAction<SceneNode>(DebugAction("MoveDown Triggered"));
 }
 
 bool InputHandler::isRealTimeAction(Action action)
@@ -115,9 +115,4 @@ bool InputHandler::isRealTimeAction(Action action)
         default:
             return false;
     }
-}
-
-void InputHandler::debugAction(const std::string text)
-{
-    std::cout << "InputHandler: " << text << std::endl;
 }

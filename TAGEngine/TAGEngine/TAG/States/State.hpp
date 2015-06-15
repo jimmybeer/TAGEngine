@@ -2,7 +2,6 @@
 
 #include "StateIdentifiers.hpp"
 #include "ResourceIdentifiers.hpp"
-#include "InputHandler.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
@@ -15,6 +14,7 @@ namespace sf
 }
 
 class StateStack;
+class InputHandler;
 
 class State
 {
@@ -22,11 +22,11 @@ public:
     typedef std::unique_ptr<State> Ptr;
 	struct Context
 	{
-	    Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandle);
-		sf::RenderWindow window;
+        Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandle);
+		sf::RenderWindow* window;
 		TextureHolder* textures;
 		FontHolder* fonts;
-		InputHandler* InputHandler;
+		InputHandler* inputHandler;
 	};
 	
 	State(StateStack& stack, Context context);
@@ -41,7 +41,7 @@ protected:
     void requestStackPop();
     void requestStackClear();
 
-    Context getConstext() const;	
+    Context getContext() const;	
 	
 private:
     StateStack* mStack;

@@ -18,7 +18,7 @@ LoadingState::LoadingState(StateStack& stack, Context context)
 	mLoadingText.setPosition(viewSize.x / 2.f, viewSize.y/ 2.f + 50.f);
 	
 	mProgressBarBackground.setFillColor(sf::Color::White);
-	mProgressBarBackground.setSize(sf::Vector2f(view.Size.x - 20, 10));
+	mProgressBarBackground.setSize(sf::Vector2f(viewSize.x - 20, 10));
 	mProgressBarBackground.setPosition(10, mLoadingText.getPosition().y + 40);
 	
 	mProgressBar.setFillColor(sf::Color(100, 100, 100));

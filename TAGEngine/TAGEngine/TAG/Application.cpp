@@ -1,8 +1,9 @@
 #include "Application.hpp"
 #include "State.hpp"
-#include "StateIdentifier.hpp"
+#include "StateIdentifiers.hpp"
 #include "Utility.hpp"
 #include "TitleState.hpp"
+#include "ResourcePath.hpp"
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -14,11 +15,14 @@ Application::Application(int w, int h, const std::string& title)
  , mStateStack(State::Context(mWindow, mTextures, mFonts, mInputHandler))
  , mStatisticsText()
  , mStatisticsUpdateTime()
- , mStatisticsNumFrame(0)
+ , mStatisticsNumFrames(0)
  , showStats(true)
  , mIsPaused(false)
 {
     mWindow.setKeyRepeatEnabled(false);
+    
+    mFonts.load(Fonts::Main, resourcePath() + "sansation.ttf");
+    mTextures.load(Textures::TitleScreen, resourcePath() + "TitleScreen.png");
 	
     mStatisticsText.setPosition(5.f, 5.f);
 	mStatisticsText.setCharacterSize(10);
@@ -42,7 +46,7 @@ void Application::run()
 			processInput();
 			if(!mIsPaused)
 			{
-			    update(timePerFrame);
+			    update(TimePerFrame);
 			}
 			
 			// Check inside this loop, because stack might be empty before update() call
@@ -101,7 +105,7 @@ void Application::render()
 	mWindow.display();
 }
 
-void Application::updateStatistics(sf::Time elapedTime)
+void Application::updateStatistics(sf::Time elapsedTime)
 {
     mStatisticsUpdateTime += elapsedTime;
 	mStatisticsNumFrames += 1;

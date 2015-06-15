@@ -2,7 +2,7 @@
 
 #include "Component.hpp"
 #include "ResourceIdentifiers.hpp"
-#include "ResourceHodler.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/Text.hpp>
 
@@ -15,7 +15,7 @@ namespace GUI
 class Label : public Component
 {
 public:
-    typedef std::shared_ptr<Lable> Ptr;
+    typedef std::shared_ptr<Label> Ptr;
 	
 	Label(const std::string& text, const FontHolder& fonts);
 	virtual bool isSelectable() const;

@@ -26,15 +26,13 @@ public:
 	void handleRealTimeInput(CommandQueue& commands);
 	
 	void assignKey(Action action, sf::Keyboard::Key key);
-	sf::Keyboard::Key getAssignedKey(Action action) const;
+    sf::Keyboard::Key getAssignedKey(Action action) const;
 	
 protected:
     void initialiseActions();
 	
 private:
     static bool isRealTimeAction(Action action);
-	
-	void debugAction(const std::string& text);
 	
     std::map<sf::Keyboard::Key, Action> mKeyBinding;
 	std::map<Action, Command> mActionBinding;

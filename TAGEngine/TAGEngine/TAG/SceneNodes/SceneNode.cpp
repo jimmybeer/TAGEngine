@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <iostream>
 
 SceneNode::SceneNode() : mChildren(), mParent(nullptr)
 {}
@@ -19,7 +20,7 @@ SceneNode::Ptr SceneNode::detachChild(const SceneNode& node)
 	assert(found != mChildren.end());
 	
 	Ptr result = std::move(*found);
-	result->mParent = nullPtr;
+	result->mParent = nullptr;
 	mChildren.erase(found);
 	return result;
 }
@@ -62,7 +63,7 @@ void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) 
 	    child->draw(target, states);
 }
 
-sf::Vector2f getWorldPosition() const
+sf::Vector2f SceneNode::getWorldPosition() const
 {
     return getWorldTransform() * sf::Vector2f();
 }
@@ -78,7 +79,7 @@ sf::Transform SceneNode::getWorldTransform() const
 	return transform;
 }
 
-void onCommand(const Command& command, sf::Time dt)
+void SceneNode::onCommand(const Command& command, sf::Time dt)
 {
     // Command current node, if category matches
 	if(command.category & getCategory())
@@ -93,8 +94,13 @@ void onCommand(const Command& command, sf::Time dt)
 	}
 }
 
-unsigned int getCategory() const
+unsigned int SceneNode::getCategory() const
 {
     // 1 is a reserved category for objects of type SceneNode
     return 1;
+}
+
+void SceneNode::debugAction(const std::string& text)
+{
+    std::cout << "InputHandler: " << text << std::endl;
 }
