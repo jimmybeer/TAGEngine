@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <algorithm>
+#include <iostream>
 
 struct DebugAction
 {
@@ -54,7 +55,7 @@ void InputHandler::handleRealTimeInput(CommandQueue& commands)
 {
     // Traverse all assigned keys and check if they are pressed
 	for(auto pair: mKeyBinding)
-	{
+    {
 	    if(sf::Keyboard::isKeyPressed(pair.first) && isRealTimeAction(pair.second))
 		{
 		    commands.push(mActionBinding[pair.second]);
@@ -83,7 +84,7 @@ void InputHandler::assignKey(Action action, sf::Keyboard::Key key)
 
 sf::Keyboard::Key InputHandler::getAssignedKey(Action action) const
 {
-    for(auto pair: mKeyBinding)
+    for(auto& pair: mKeyBinding)
 	{
 	    if(pair.second == action)
 		{

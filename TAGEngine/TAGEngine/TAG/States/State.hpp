@@ -22,7 +22,7 @@ public:
     typedef std::unique_ptr<State> Ptr;
 	struct Context
 	{
-        Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandle);
+        Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandler);
 		sf::RenderWindow* window;
 		TextureHolder* textures;
 		FontHolder* fonts;

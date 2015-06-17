@@ -36,6 +36,9 @@
 		FF3E06F01B2F5175008F1A1C /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06D61B2F5175008F1A1C /* Utility.cpp */; };
 		FF3E06F11B2F5175008F1A1C /* Utility.inl in Resources */ = {isa = PBXBuildFile; fileRef = FF3E06D81B2F5175008F1A1C /* Utility.inl */; };
 		FF3E06F21B2F5175008F1A1C /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06DA1B2F5175008F1A1C /* World.cpp */; };
+		FF4A369C1B30B4570067B726 /* ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A36991B30B4570067B726 /* ButtonNormal.png */; };
+		FF4A369D1B30B4570067B726 /* ButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A369A1B30B4570067B726 /* ButtonPressed.png */; };
+		FF4A369E1B30B4570067B726 /* ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A369B1B30B4570067B726 /* ButtonSelected.png */; };
 		FF6AE4CF1B2F6A7D0023B942 /* TitleScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6AE4CE1B2F6A7D0023B942 /* TitleScreen.png */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +99,9 @@
 		FF3E06D81B2F5175008F1A1C /* Utility.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Utility.inl; sourceTree = "<group>"; };
 		FF3E06DA1B2F5175008F1A1C /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		FF3E06DB1B2F5175008F1A1C /* World.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = World.hpp; sourceTree = "<group>"; };
+		FF4A36991B30B4570067B726 /* ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonNormal.png; sourceTree = "<group>"; };
+		FF4A369A1B30B4570067B726 /* ButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPressed.png; sourceTree = "<group>"; };
+		FF4A369B1B30B4570067B726 /* ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonSelected.png; sourceTree = "<group>"; };
 		FF6AE4CE1B2F6A7D0023B942 /* TitleScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleScreen.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +156,9 @@
 		FF3E06961B2F509B008F1A1C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FF4A36991B30B4570067B726 /* ButtonNormal.png */,
+				FF4A369A1B30B4570067B726 /* ButtonPressed.png */,
+				FF4A369B1B30B4570067B726 /* ButtonSelected.png */,
 				FF6AE4CE1B2F6A7D0023B942 /* TitleScreen.png */,
 				FF3E06971B2F509B008F1A1C /* cute_image.jpg */,
 				FF3E06991B2F509B008F1A1C /* nice_music.ogg */,
@@ -334,11 +343,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4A369C1B30B4570067B726 /* ButtonNormal.png in Resources */,
 				FF3E06F11B2F5175008F1A1C /* Utility.inl in Resources */,
 				FF3E069E1B2F509B008F1A1C /* icon.png in Resources */,
 				FF3E06E41B2F5175008F1A1C /* ResourceHolder.inl in Resources */,
 				FF3E069C1B2F509B008F1A1C /* sansation.ttf in Resources */,
 				FF3E069A1B2F509B008F1A1C /* nice_music.ogg in Resources */,
+				FF4A369E1B30B4570067B726 /* ButtonSelected.png in Resources */,
+				FF4A369D1B30B4570067B726 /* ButtonPressed.png in Resources */,
 				FF6AE4CF1B2F6A7D0023B942 /* TitleScreen.png in Resources */,
 				FF3E06981B2F509B008F1A1C /* cute_image.jpg in Resources */,
 			);

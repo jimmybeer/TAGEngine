@@ -1,11 +1,11 @@
 #include "State.hpp"
 #include "StateStack.hpp"
 
-State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandle)
+State::Context::Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandler)
  : window(&window)
  , textures(&textures)
  , fonts(&fonts)
- , inputHandler(inputHandler)
+ , inputHandler(&inputHandler)
 {}
 
 State::State(StateStack& stack, Context context)
