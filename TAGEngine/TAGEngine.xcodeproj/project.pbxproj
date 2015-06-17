@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF02D3F91B320F7100D9F30F /* Aircraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D3EF1B320F7100D9F30F /* Aircraft.cpp */; };
+		FF02D3FA1B320F7100D9F30F /* DataTables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D3F11B320F7100D9F30F /* DataTables.cpp */; };
+		FF02D3FB1B320F7100D9F30F /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D3F31B320F7100D9F30F /* Entity.cpp */; };
+		FF02D3FC1B320F7100D9F30F /* Pickup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D3F51B320F7100D9F30F /* Pickup.cpp */; };
+		FF02D3FD1B320F7100D9F30F /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D3F71B320F7100D9F30F /* Projectile.cpp */; };
+		FF02D4001B320F9200D9F30F /* TextNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D3FE1B320F9200D9F30F /* TextNode.cpp */; };
+		FF02D4031B320FA600D9F30F /* GameOverState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D4011B320FA600D9F30F /* GameOverState.cpp */; };
 		FF3E06921B2F509B008F1A1C /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06911B2F509B008F1A1C /* ResourcePath.mm */; };
 		FF3E06951B2F509B008F1A1C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06941B2F509B008F1A1C /* main.cpp */; };
 		FF3E06981B2F509B008F1A1C /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF3E06971B2F509B008F1A1C /* cute_image.jpg */; };
@@ -43,6 +50,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF02D3ED1B320F4300D9F30F /* Category.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Category.hpp; sourceTree = "<group>"; };
+		FF02D3EF1B320F7100D9F30F /* Aircraft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Aircraft.cpp; sourceTree = "<group>"; };
+		FF02D3F01B320F7100D9F30F /* Aircraft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Aircraft.hpp; sourceTree = "<group>"; };
+		FF02D3F11B320F7100D9F30F /* DataTables.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataTables.cpp; sourceTree = "<group>"; };
+		FF02D3F21B320F7100D9F30F /* DataTables.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DataTables.hpp; sourceTree = "<group>"; };
+		FF02D3F31B320F7100D9F30F /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		FF02D3F41B320F7100D9F30F /* Entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		FF02D3F51B320F7100D9F30F /* Pickup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pickup.cpp; sourceTree = "<group>"; };
+		FF02D3F61B320F7100D9F30F /* Pickup.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pickup.hpp; sourceTree = "<group>"; };
+		FF02D3F71B320F7100D9F30F /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
+		FF02D3F81B320F7100D9F30F /* Projectile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Projectile.hpp; sourceTree = "<group>"; };
+		FF02D3FE1B320F9200D9F30F /* TextNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextNode.cpp; sourceTree = "<group>"; };
+		FF02D3FF1B320F9200D9F30F /* TextNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TextNode.hpp; sourceTree = "<group>"; };
+		FF02D4011B320FA600D9F30F /* GameOverState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverState.cpp; sourceTree = "<group>"; };
+		FF02D4021B320FA600D9F30F /* GameOverState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameOverState.hpp; sourceTree = "<group>"; };
 		FF3E068C1B2F509B008F1A1C /* TAGEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAGEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3E06901B2F509B008F1A1C /* TAGEngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TAGEngine-Info.plist"; sourceTree = "<group>"; };
 		FF3E06911B2F509B008F1A1C /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -116,6 +138,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF02D3EE1B320F7100D9F30F /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				FF02D3EF1B320F7100D9F30F /* Aircraft.cpp */,
+				FF02D3F01B320F7100D9F30F /* Aircraft.hpp */,
+				FF02D3F11B320F7100D9F30F /* DataTables.cpp */,
+				FF02D3F21B320F7100D9F30F /* DataTables.hpp */,
+				FF02D3F31B320F7100D9F30F /* Entity.cpp */,
+				FF02D3F41B320F7100D9F30F /* Entity.hpp */,
+				FF02D3F51B320F7100D9F30F /* Pickup.cpp */,
+				FF02D3F61B320F7100D9F30F /* Pickup.hpp */,
+				FF02D3F71B320F7100D9F30F /* Projectile.cpp */,
+				FF02D3F81B320F7100D9F30F /* Projectile.hpp */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		FF3E06821B2F509B008F1A1C = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +210,7 @@
 		FF3E06A41B2F5175008F1A1C /* TAG */ = {
 			isa = PBXGroup;
 			children = (
+				FF02D3EE1B320F7100D9F30F /* Entity */,
 				FF3E06A51B2F5175008F1A1C /* Application.cpp */,
 				FF3E06A61B2F5175008F1A1C /* Application.hpp */,
 				FF3E06A71B2F5175008F1A1C /* Commands */,
@@ -191,6 +231,7 @@
 		FF3E06A71B2F5175008F1A1C /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				FF02D3ED1B320F4300D9F30F /* Category.hpp */,
 				FF3E06A81B2F5175008F1A1C /* Command.cpp */,
 				FF3E06A91B2F5175008F1A1C /* Command.hpp */,
 				FF3E06AA1B2F5175008F1A1C /* CommandQueue.cpp */,
@@ -236,6 +277,8 @@
 		FF3E06BC1B2F5175008F1A1C /* SceneNodes */ = {
 			isa = PBXGroup;
 			children = (
+				FF02D3FE1B320F9200D9F30F /* TextNode.cpp */,
+				FF02D3FF1B320F9200D9F30F /* TextNode.hpp */,
 				FF3E06BD1B2F5175008F1A1C /* SceneNode.cpp */,
 				FF3E06BE1B2F5175008F1A1C /* SceneNode.hpp */,
 				FF3E06BF1B2F5175008F1A1C /* SpriteNode.cpp */,
@@ -247,6 +290,8 @@
 		FF3E06C11B2F5175008F1A1C /* States */ = {
 			isa = PBXGroup;
 			children = (
+				FF02D4011B320FA600D9F30F /* GameOverState.cpp */,
+				FF02D4021B320FA600D9F30F /* GameOverState.hpp */,
 				FF3E06C21B2F5175008F1A1C /* GameState.cpp */,
 				FF3E06C31B2F5175008F1A1C /* GameState.hpp */,
 				FF3E06C41B2F5175008F1A1C /* LoadingState.cpp */,
@@ -390,15 +435,22 @@
 				FF3E06EF1B2F5175008F1A1C /* ParallelTask.cpp in Sources */,
 				FF3E06E61B2F5175008F1A1C /* SpriteNode.cpp in Sources */,
 				FF3E06E31B2F5175008F1A1C /* InputHandler.cpp in Sources */,
+				FF02D4001B320F9200D9F30F /* TextNode.cpp in Sources */,
 				FF3E06921B2F509B008F1A1C /* ResourcePath.mm in Sources */,
 				FF3E06E01B2F5175008F1A1C /* Component.cpp in Sources */,
 				FF3E06DC1B2F5175008F1A1C /* Application.cpp in Sources */,
 				FF3E06E71B2F5175008F1A1C /* GameState.cpp in Sources */,
+				FF02D3FC1B320F7100D9F30F /* Pickup.cpp in Sources */,
 				FF3E06DD1B2F5175008F1A1C /* Command.cpp in Sources */,
 				FF3E06DE1B2F5175008F1A1C /* CommandQueue.cpp in Sources */,
+				FF02D4031B320FA600D9F30F /* GameOverState.cpp in Sources */,
+				FF02D3F91B320F7100D9F30F /* Aircraft.cpp in Sources */,
+				FF02D3FA1B320F7100D9F30F /* DataTables.cpp in Sources */,
+				FF02D3FD1B320F7100D9F30F /* Projectile.cpp in Sources */,
 				FF3E06E91B2F5175008F1A1C /* MenuState.cpp in Sources */,
 				FF3E06F01B2F5175008F1A1C /* Utility.cpp in Sources */,
 				FF3E06EA1B2F5175008F1A1C /* PauseState.cpp in Sources */,
+				FF02D3FB1B320F7100D9F30F /* Entity.cpp in Sources */,
 				FF3E06DF1B2F5175008F1A1C /* Button.cpp in Sources */,
 				FF3E06F21B2F5175008F1A1C /* World.cpp in Sources */,
 				FF3E06EC1B2F5175008F1A1C /* State.cpp in Sources */,
