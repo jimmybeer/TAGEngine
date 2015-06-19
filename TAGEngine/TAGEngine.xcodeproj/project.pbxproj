@@ -16,10 +16,6 @@
 		FF02D4031B320FA600D9F30F /* GameOverState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF02D4011B320FA600D9F30F /* GameOverState.cpp */; };
 		FF3E06921B2F509B008F1A1C /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06911B2F509B008F1A1C /* ResourcePath.mm */; };
 		FF3E06951B2F509B008F1A1C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06941B2F509B008F1A1C /* main.cpp */; };
-		FF3E06981B2F509B008F1A1C /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF3E06971B2F509B008F1A1C /* cute_image.jpg */; };
-		FF3E069A1B2F509B008F1A1C /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = FF3E06991B2F509B008F1A1C /* nice_music.ogg */; };
-		FF3E069C1B2F509B008F1A1C /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF3E069B1B2F509B008F1A1C /* sansation.ttf */; };
-		FF3E069E1B2F509B008F1A1C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FF3E069D1B2F509B008F1A1C /* icon.png */; };
 		FF3E06DC1B2F5175008F1A1C /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06A51B2F5175008F1A1C /* Application.cpp */; };
 		FF3E06DD1B2F5175008F1A1C /* Command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06A81B2F5175008F1A1C /* Command.cpp */; };
 		FF3E06DE1B2F5175008F1A1C /* CommandQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06AA1B2F5175008F1A1C /* CommandQueue.cpp */; };
@@ -43,10 +39,24 @@
 		FF3E06F01B2F5175008F1A1C /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06D61B2F5175008F1A1C /* Utility.cpp */; };
 		FF3E06F11B2F5175008F1A1C /* Utility.inl in Resources */ = {isa = PBXBuildFile; fileRef = FF3E06D81B2F5175008F1A1C /* Utility.inl */; };
 		FF3E06F21B2F5175008F1A1C /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06DA1B2F5175008F1A1C /* World.cpp */; };
-		FF4A369C1B30B4570067B726 /* ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A36991B30B4570067B726 /* ButtonNormal.png */; };
-		FF4A369D1B30B4570067B726 /* ButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A369A1B30B4570067B726 /* ButtonPressed.png */; };
-		FF4A369E1B30B4570067B726 /* ButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = FF4A369B1B30B4570067B726 /* ButtonSelected.png */; };
-		FF6AE4CF1B2F6A7D0023B942 /* TitleScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6AE4CE1B2F6A7D0023B942 /* TitleScreen.png */; };
+		FF9D6FAE1B34BAB600A995F0 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FA81B34BAB600A995F0 /* Animation.cpp */; };
+		FF9D6FAF1B34BAB600A995F0 /* BloomEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FAA1B34BAB600A995F0 /* BloomEffect.cpp */; };
+		FF9D6FB01B34BAB600A995F0 /* PostEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FAC1B34BAB600A995F0 /* PostEffect.cpp */; };
+		FF9D6FB71B34BAEF00A995F0 /* EmitterNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FB31B34BAEF00A995F0 /* EmitterNode.cpp */; };
+		FF9D6FB81B34BAEF00A995F0 /* ParticleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FB51B34BAEF00A995F0 /* ParticleNode.cpp */; };
+		FF9D6FBE1B34BB2800A995F0 /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FBB1B34BB2800A995F0 /* sansation.ttf */; };
+		FF9D6FBF1B34BB2800A995F0 /* TitleScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FBD1B34BB2800A995F0 /* TitleScreen.png */; };
+		FF9D6FC21B34C60900A995F0 /* Add.frag in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FC11B34C60900A995F0 /* Add.frag */; };
+		FF9D6FC41B34C63200A995F0 /* Brightness.frag in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FC31B34C63200A995F0 /* Brightness.frag */; };
+		FF9D6FC61B34C65700A995F0 /* DownSample.frag in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FC51B34C65700A995F0 /* DownSample.frag */; };
+		FF9D6FC81B34C67A00A995F0 /* Fullpass.vert in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FC71B34C67A00A995F0 /* Fullpass.vert */; };
+		FF9D6FCA1B34C69900A995F0 /* GaussianBlur.frag in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FC91B34C69900A995F0 /* GaussianBlur.frag */; };
+		FF9D6FD21B34C6F000A995F0 /* Buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCB1B34C6F000A995F0 /* Buttons.png */; };
+		FF9D6FD31B34C6F000A995F0 /* Entities.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCC1B34C6F000A995F0 /* Entities.png */; };
+		FF9D6FD41B34C6F000A995F0 /* Explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCD1B34C6F000A995F0 /* Explosion.png */; };
+		FF9D6FD51B34C6F000A995F0 /* FinishLine.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCE1B34C6F000A995F0 /* FinishLine.png */; };
+		FF9D6FD61B34C6F000A995F0 /* Jungle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCF1B34C6F000A995F0 /* Jungle.png */; };
+		FF9D6FD71B34C6F000A995F0 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FD01B34C6F000A995F0 /* Particle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,10 +80,6 @@
 		FF3E06911B2F509B008F1A1C /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		FF3E06931B2F509B008F1A1C /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		FF3E06941B2F509B008F1A1C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		FF3E06971B2F509B008F1A1C /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		FF3E06991B2F509B008F1A1C /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
-		FF3E069B1B2F509B008F1A1C /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		FF3E069D1B2F509B008F1A1C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		FF3E06A51B2F5175008F1A1C /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
 		FF3E06A61B2F5175008F1A1C /* Application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Application.hpp; sourceTree = "<group>"; };
 		FF3E06A81B2F5175008F1A1C /* Command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Command.cpp; sourceTree = "<group>"; };
@@ -121,10 +127,30 @@
 		FF3E06D81B2F5175008F1A1C /* Utility.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Utility.inl; sourceTree = "<group>"; };
 		FF3E06DA1B2F5175008F1A1C /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		FF3E06DB1B2F5175008F1A1C /* World.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = World.hpp; sourceTree = "<group>"; };
-		FF4A36991B30B4570067B726 /* ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonNormal.png; sourceTree = "<group>"; };
-		FF4A369A1B30B4570067B726 /* ButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonPressed.png; sourceTree = "<group>"; };
-		FF4A369B1B30B4570067B726 /* ButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonSelected.png; sourceTree = "<group>"; };
-		FF6AE4CE1B2F6A7D0023B942 /* TitleScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleScreen.png; sourceTree = "<group>"; };
+		FF9D6FA81B34BAB600A995F0 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
+		FF9D6FA91B34BAB600A995F0 /* Animation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Animation.hpp; sourceTree = "<group>"; };
+		FF9D6FAA1B34BAB600A995F0 /* BloomEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BloomEffect.cpp; sourceTree = "<group>"; };
+		FF9D6FAB1B34BAB600A995F0 /* BloomEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BloomEffect.hpp; sourceTree = "<group>"; };
+		FF9D6FAC1B34BAB600A995F0 /* PostEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PostEffect.cpp; sourceTree = "<group>"; };
+		FF9D6FAD1B34BAB600A995F0 /* PostEffect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PostEffect.hpp; sourceTree = "<group>"; };
+		FF9D6FB21B34BADC00A995F0 /* Particle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particle.hpp; sourceTree = "<group>"; };
+		FF9D6FB31B34BAEF00A995F0 /* EmitterNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmitterNode.cpp; sourceTree = "<group>"; };
+		FF9D6FB41B34BAEF00A995F0 /* EmitterNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EmitterNode.hpp; sourceTree = "<group>"; };
+		FF9D6FB51B34BAEF00A995F0 /* ParticleNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleNode.cpp; sourceTree = "<group>"; };
+		FF9D6FB61B34BAEF00A995F0 /* ParticleNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleNode.hpp; sourceTree = "<group>"; };
+		FF9D6FBB1B34BB2800A995F0 /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
+		FF9D6FBD1B34BB2800A995F0 /* TitleScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TitleScreen.png; sourceTree = "<group>"; };
+		FF9D6FC11B34C60900A995F0 /* Add.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Add.frag; sourceTree = "<group>"; };
+		FF9D6FC31B34C63200A995F0 /* Brightness.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Brightness.frag; sourceTree = "<group>"; };
+		FF9D6FC51B34C65700A995F0 /* DownSample.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DownSample.frag; sourceTree = "<group>"; };
+		FF9D6FC71B34C67A00A995F0 /* Fullpass.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Fullpass.vert; sourceTree = "<group>"; };
+		FF9D6FC91B34C69900A995F0 /* GaussianBlur.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = GaussianBlur.frag; sourceTree = "<group>"; };
+		FF9D6FCB1B34C6F000A995F0 /* Buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Buttons.png; sourceTree = "<group>"; };
+		FF9D6FCC1B34C6F000A995F0 /* Entities.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entities.png; sourceTree = "<group>"; };
+		FF9D6FCD1B34C6F000A995F0 /* Explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Explosion.png; sourceTree = "<group>"; };
+		FF9D6FCE1B34C6F000A995F0 /* FinishLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FinishLine.png; sourceTree = "<group>"; };
+		FF9D6FCF1B34C6F000A995F0 /* Jungle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jungle.png; sourceTree = "<group>"; };
+		FF9D6FD01B34C6F000A995F0 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,14 +221,7 @@
 		FF3E06961B2F509B008F1A1C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FF4A36991B30B4570067B726 /* ButtonNormal.png */,
-				FF4A369A1B30B4570067B726 /* ButtonPressed.png */,
-				FF4A369B1B30B4570067B726 /* ButtonSelected.png */,
-				FF6AE4CE1B2F6A7D0023B942 /* TitleScreen.png */,
-				FF3E06971B2F509B008F1A1C /* cute_image.jpg */,
-				FF3E06991B2F509B008F1A1C /* nice_music.ogg */,
-				FF3E069B1B2F509B008F1A1C /* sansation.ttf */,
-				FF3E069D1B2F509B008F1A1C /* icon.png */,
+				FF9D6FB91B34BB2800A995F0 /* Media */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -210,6 +229,8 @@
 		FF3E06A41B2F5175008F1A1C /* TAG */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6FB11B34BADC00A995F0 /* Particles */,
+				FF9D6FA71B34BAB600A995F0 /* Gfx */,
 				FF02D3EE1B320F7100D9F30F /* Entity */,
 				FF3E06A51B2F5175008F1A1C /* Application.cpp */,
 				FF3E06A61B2F5175008F1A1C /* Application.hpp */,
@@ -277,6 +298,10 @@
 		FF3E06BC1B2F5175008F1A1C /* SceneNodes */ = {
 			isa = PBXGroup;
 			children = (
+				FF9D6FB31B34BAEF00A995F0 /* EmitterNode.cpp */,
+				FF9D6FB41B34BAEF00A995F0 /* EmitterNode.hpp */,
+				FF9D6FB51B34BAEF00A995F0 /* ParticleNode.cpp */,
+				FF9D6FB61B34BAEF00A995F0 /* ParticleNode.hpp */,
 				FF02D3FE1B320F9200D9F30F /* TextNode.cpp */,
 				FF02D3FF1B320F9200D9F30F /* TextNode.hpp */,
 				FF3E06BD1B2F5175008F1A1C /* SceneNode.cpp */,
@@ -329,6 +354,71 @@
 				FF3E06DB1B2F5175008F1A1C /* World.hpp */,
 			);
 			path = World;
+			sourceTree = "<group>";
+		};
+		FF9D6FA71B34BAB600A995F0 /* Gfx */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6FA81B34BAB600A995F0 /* Animation.cpp */,
+				FF9D6FA91B34BAB600A995F0 /* Animation.hpp */,
+				FF9D6FAA1B34BAB600A995F0 /* BloomEffect.cpp */,
+				FF9D6FAB1B34BAB600A995F0 /* BloomEffect.hpp */,
+				FF9D6FAC1B34BAB600A995F0 /* PostEffect.cpp */,
+				FF9D6FAD1B34BAB600A995F0 /* PostEffect.hpp */,
+			);
+			path = Gfx;
+			sourceTree = "<group>";
+		};
+		FF9D6FB11B34BADC00A995F0 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6FB21B34BADC00A995F0 /* Particle.hpp */,
+			);
+			path = Particles;
+			sourceTree = "<group>";
+		};
+		FF9D6FB91B34BB2800A995F0 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6FC01B34C5EE00A995F0 /* Shaders */,
+				FF9D6FBA1B34BB2800A995F0 /* Fonts */,
+				FF9D6FBC1B34BB2800A995F0 /* Textures */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		FF9D6FBA1B34BB2800A995F0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6FBB1B34BB2800A995F0 /* sansation.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FF9D6FBC1B34BB2800A995F0 /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6FCB1B34C6F000A995F0 /* Buttons.png */,
+				FF9D6FCC1B34C6F000A995F0 /* Entities.png */,
+				FF9D6FCD1B34C6F000A995F0 /* Explosion.png */,
+				FF9D6FCE1B34C6F000A995F0 /* FinishLine.png */,
+				FF9D6FCF1B34C6F000A995F0 /* Jungle.png */,
+				FF9D6FD01B34C6F000A995F0 /* Particle.png */,
+				FF9D6FBD1B34BB2800A995F0 /* TitleScreen.png */,
+			);
+			path = Textures;
+			sourceTree = "<group>";
+		};
+		FF9D6FC01B34C5EE00A995F0 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				FF9D6FC11B34C60900A995F0 /* Add.frag */,
+				FF9D6FC31B34C63200A995F0 /* Brightness.frag */,
+				FF9D6FC51B34C65700A995F0 /* DownSample.frag */,
+				FF9D6FC71B34C67A00A995F0 /* Fullpass.vert */,
+				FF9D6FC91B34C69900A995F0 /* GaussianBlur.frag */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,16 +478,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF4A369C1B30B4570067B726 /* ButtonNormal.png in Resources */,
+				FF9D6FBF1B34BB2800A995F0 /* TitleScreen.png in Resources */,
+				FF9D6FBE1B34BB2800A995F0 /* sansation.ttf in Resources */,
+				FF9D6FC21B34C60900A995F0 /* Add.frag in Resources */,
+				FF9D6FC61B34C65700A995F0 /* DownSample.frag in Resources */,
+				FF9D6FD71B34C6F000A995F0 /* Particle.png in Resources */,
 				FF3E06F11B2F5175008F1A1C /* Utility.inl in Resources */,
-				FF3E069E1B2F509B008F1A1C /* icon.png in Resources */,
+				FF9D6FD41B34C6F000A995F0 /* Explosion.png in Resources */,
+				FF9D6FD61B34C6F000A995F0 /* Jungle.png in Resources */,
+				FF9D6FC41B34C63200A995F0 /* Brightness.frag in Resources */,
+				FF9D6FC81B34C67A00A995F0 /* Fullpass.vert in Resources */,
+				FF9D6FD51B34C6F000A995F0 /* FinishLine.png in Resources */,
+				FF9D6FD21B34C6F000A995F0 /* Buttons.png in Resources */,
 				FF3E06E41B2F5175008F1A1C /* ResourceHolder.inl in Resources */,
-				FF3E069C1B2F509B008F1A1C /* sansation.ttf in Resources */,
-				FF3E069A1B2F509B008F1A1C /* nice_music.ogg in Resources */,
-				FF4A369E1B30B4570067B726 /* ButtonSelected.png in Resources */,
-				FF4A369D1B30B4570067B726 /* ButtonPressed.png in Resources */,
-				FF6AE4CF1B2F6A7D0023B942 /* TitleScreen.png in Resources */,
-				FF3E06981B2F509B008F1A1C /* cute_image.jpg in Resources */,
+				FF9D6FCA1B34C69900A995F0 /* GaussianBlur.frag in Resources */,
+				FF9D6FD31B34C6F000A995F0 /* Entities.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,9 +521,13 @@
 			files = (
 				FF3E06E21B2F5175008F1A1C /* Label.cpp in Sources */,
 				FF3E06ED1B2F5175008F1A1C /* StateStack.cpp in Sources */,
+				FF9D6FAE1B34BAB600A995F0 /* Animation.cpp in Sources */,
+				FF9D6FB01B34BAB600A995F0 /* PostEffect.cpp in Sources */,
 				FF3E06EB1B2F5175008F1A1C /* SettingsStates.cpp in Sources */,
 				FF3E06E51B2F5175008F1A1C /* SceneNode.cpp in Sources */,
+				FF9D6FB71B34BAEF00A995F0 /* EmitterNode.cpp in Sources */,
 				FF3E06951B2F509B008F1A1C /* main.cpp in Sources */,
+				FF9D6FAF1B34BAB600A995F0 /* BloomEffect.cpp in Sources */,
 				FF3E06E11B2F5175008F1A1C /* Container.cpp in Sources */,
 				FF3E06EE1B2F5175008F1A1C /* TitleState.cpp in Sources */,
 				FF3E06E81B2F5175008F1A1C /* LoadingState.cpp in Sources */,
@@ -440,6 +539,7 @@
 				FF3E06E01B2F5175008F1A1C /* Component.cpp in Sources */,
 				FF3E06DC1B2F5175008F1A1C /* Application.cpp in Sources */,
 				FF3E06E71B2F5175008F1A1C /* GameState.cpp in Sources */,
+				FF9D6FB81B34BAEF00A995F0 /* ParticleNode.cpp in Sources */,
 				FF02D3FC1B320F7100D9F30F /* Pickup.cpp in Sources */,
 				FF3E06DD1B2F5175008F1A1C /* Command.cpp in Sources */,
 				FF3E06DE1B2F5175008F1A1C /* CommandQueue.cpp in Sources */,

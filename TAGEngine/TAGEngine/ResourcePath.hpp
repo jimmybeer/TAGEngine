@@ -31,6 +31,13 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 
+#define FONTS ""
+//"Media/Fonts/"
+#define TEXTURES ""
+//"Media/Textures/"
+#define SHADERS ""
+//"Media/Shaders/"
+
 ////////////////////////////////////////////////////////////
 /// \brief Return the path to the resource folder.
 ///

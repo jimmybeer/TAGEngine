@@ -19,13 +19,15 @@ namespace
 Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& fonts)
  : Entity(Table[type].hitpoints)
  , mType(type)
- , mSprite(textures.get(Table[type].texture))
+ , mSprite(textures.get(Table[type].texture), Table[type].textureRect)
+ , mExplosion(textures.get(Textures::Explosions))
  , mFireCommand()
  , mMissileCommand()
  , mFireCountdown(sf::Time::Zero)
  , mIsFiring(false)
  , mIsLaunchingMissile(false)
- , mIsMarkedForRemoval(false)
+ , mShowExplosion(true)
+ , mSpawnedPickup(false)
  , mFireRateLevel(1)
  , mSpreadLevel(1)
  , mMissileAmmo(2)
@@ -35,33 +37,38 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
  , mHealthDisplay(nullptr)
  , mMissileDisplay(nullptr)
 {
+    mExplosion.setFrameSize(sf::Vector2i(256,256));
+	mExplosion.setNumFrames(16);
+	mExplosion.setDuration(sf::seconds(1));
+	
     centerOrigin(mSprite);
+	centerOrigin(mExplosion);
 	
 	mFireCommand.category = Category::SceneAirLayer;
 	mFireCommand.action = [this, &textures] (SceneNode& node, sf::Time)
 	{
-	    createBullet(node, textures);
+	    createBullets(node, textures);
 	};
 	
-	mMissileComand.category = Category::SceneAirLayer;
+	mMissileCommand.category = Category::SceneAirLayer;
 	mMissileCommand.action = [this, &textures] (SceneNode& node, sf::Time)
 	{
 	    createProjectile(node, Projectile::Missile, 0.f, 0.5f, textures);
 	};
 	
 	mDropPickupCommand.category = Category::SceneAirLayer;
-	mDropPickupCommand.action = [this, &textures] (SceneNode& dt, sf::Time)
+	mDropPickupCommand.action = [this, &textures] (SceneNode& node, sf::Time)
 	{
-	    createPickup(node, textures);
+	    createPickUp(node, textures);
 	};
 	
-	std::unique_ptr<TextNode> healthDisplay(new TextNodes(fonts, ""));
+	std::unique_ptr<TextNode> healthDisplay(new TextNode(fonts, ""));
 	mHealthDisplay = healthDisplay.get();
 	attachChild(std::move(healthDisplay));
 	
 	if(getCategory() == Category::PlayerAircraft)
 	{
-	    std::unique_ptr<TextNode> missileDisplay(new TextNodes(fonts, ""));
+	    std::unique_ptr<TextNode> missileDisplay(new TextNode(fonts, ""));
 		missileDisplay->setPosition(0, 70);
 		mMissileDisplay = missileDisplay.get();
 		attachChild(std::move(missileDisplay));
@@ -89,7 +96,13 @@ sf::FloatRect Aircraft::getBoundingRect() const
 
 bool Aircraft::isMarkedForRemoval() const
 {
-    return mIsMarkedForRemoval;
+    return isDestroyed() && (mExplosion.isFinised() || !mShowExplosion);
+}
+
+void Aircraft::remove()
+{
+    Entity::remove();
+	mShowExplosion = false;
 }
 
 bool Aircraft::isAllied() const
@@ -143,17 +156,27 @@ void Aircraft::launchMissile()
 	
 void Aircraft::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.draw(target);
+    if(isDestroyed() && mShowExplosion)
+	{
+	    target.draw(mExplosion, states);
+	}
+	else
+	{
+        target.draw(mSprite, states);
+	}
 }
 	
 void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
+	// Update texts and roll anumation
+	updateTexts();
+	updateRollAnimation();
+	
     // Entity has been destroyed: Possibly drop pickup, mark for removal
 	if(isDestroyed())
 	{
 	    checkPickupDrop(commands);
-		
-		mIsMarkedForRemoval = true;
+		mExplosion.update(dt);
 		return;
 	}
 	
@@ -164,8 +187,6 @@ void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 	updateMovementPattern(dt);
 	Entity::updateCurrent(dt, commands);
 	
-	// Update texts
-	updateTexts();
 }
 	
 void Aircraft::updateMovementPattern(sf::Time dt)
@@ -213,13 +234,13 @@ void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
 	{
 	    // Inteval expired: We can fira a new bullet
 		commands.push(mFireCommand);
-		mFireCommand += Table[mType].fireInterval / (mFireRateLevel + 1.f);
+		mFireCountdown += Table[mType].fireInterval / (mFireRateLevel + 1.f);
 		mIsFiring = false;
 	}
 	else if(mFireCountdown > sf::Time::Zero)
 	{
 	    // Interval not expired: Decrease it further
-		mFireCountdown -= dt;3
+		mFireCountdown -= dt;
 		mIsFiring = false;
 	}
 	
@@ -259,7 +280,7 @@ void Aircraft::createProjectile(SceneNode& node, Projectile::Type type, float xO
 	sf::Vector2f offset(xOffset * mSprite.getGlobalBounds().width, yOffset * mSprite.getGlobalBounds().height);
 	sf::Vector2f velocity(0, projectile->getMaxSpeed());
 	
-	float sign = isAllied() : -1.f : +1.f;
+	float sign = isAllied() ? -1.f : +1.f;
 	projectile->setPosition(getWorldPosition() + offset * sign);
 	projectile->setVelocity(velocity * sign);
 	node.attachChild(std::move(projectile));
@@ -295,3 +316,20 @@ void Aircraft::updateTexts()
 	}
 }
 	
+void Aircraft::updateRollAnimation()
+{
+    if(Table[mType].hasRollAnimation)
+	{
+	    sf::IntRect textureRect = Table[mType].textureRect;
+		
+		// Roll left: Texture rect offset once
+		if(getVelocity().x < 0.f)
+		    textureRect.left += textureRect.width;
+			
+		// Roll right: Texture rect offset twice
+		if(getVelocity().x > 0.f)
+		    textureRect.left += 2 * textureRect.width;
+			
+		mSprite.setTextureRect(textureRect);
+	}
+}

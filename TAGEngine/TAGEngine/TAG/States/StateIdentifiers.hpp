@@ -7,9 +7,10 @@ namespace States
 	    None,
 		Title,
 		Menu,
-        Settings,
 		Game,
 		Loading,
-		Pause
+		Pause,
+		Settings,
+		GameOver,
 	};
 }

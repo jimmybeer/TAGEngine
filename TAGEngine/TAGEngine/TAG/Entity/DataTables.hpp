@@ -4,6 +4,7 @@
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
 #include <vector>
 #include <functional>
@@ -25,8 +26,10 @@ struct AircraftData
     int hitpoints;
 	float speed;
 	Textures::ID texture;
+	sf::IntRect textureRect;
 	sf::Time fireInterval;
 	std::vector<Direction> directions;
+	bool hasRollAnimation;
 };
 
 struct ProjectileData
@@ -34,14 +37,23 @@ struct ProjectileData
     int damage;
 	float speed;
 	Textures::ID texture;
+	sf::IntRect textureRect;
 };
 
 struct PickupData
 {
     std::function<void(Aircraft&)> action;
 	Textures::ID texture;
+	sf::IntRect textureRect;
+};
+
+struct ParticleData
+{
+    sf::Color color;
+	sf::Time lifeTime;
 };
 
 std::vector<AircraftData> initialiseAircraftData();
 std::vector<ProjectileData> initialiseProjectileData();
 std::vector<PickupData> initialisePickupData();
+std::vector<ParticleData> initialiseParticleData();

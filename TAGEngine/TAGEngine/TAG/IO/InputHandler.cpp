@@ -1,40 +1,44 @@
 #include "InputHandler.hpp"
 #include "CommandQueue.hpp"
 #include "SceneNode.hpp"
+#include "Aircraft.hpp"
 
 #include <map>
 #include <string>
 #include <algorithm>
-#include <iostream>
 
-struct DebugAction
+using namespace std::placeholders;
+
+struct AircraftMover
 {
-	DebugAction(const std::string& text)
-	: mText(text)
+    AircraftMover(float vx, float vy)
+	 : velocity(vx, vy)
+	{}
+	
+	void operator() (Aircraft& aircraft, sf::Time) const
 	{
+	    aircraft.accelerate(velocity * aircraft.getMaxSpeed());
 	}
-
-	void operator() (SceneNode& sn, sf::Time) const
-	{
-		sn.debugAction(mText);
-	}
-
-	std::string mText;
+	
+	sf::Vector2f velocity;
 };
 
 InputHandler::InputHandler()
+ : mCurrentMissionStatus(MissionRunning)
 {
     // set initial key bindings
 	mKeyBinding[sf::Keyboard::Left] = MoveLeft;
 	mKeyBinding[sf::Keyboard::Right] = MoveRight;
 	mKeyBinding[sf::Keyboard::Up] = MoveUp;
 	mKeyBinding[sf::Keyboard::Down] = MoveDown;
+	mKeyBinding[sf::Keyboard::Space] = Fire;
+	mKeyBinding[sf::Keyboard::M] = LaunchMissile;
 	
     initialiseActions();
 	
     for(auto& pair : mActionBinding)
 	{
-        pair.second.category = 0;
+        pair.second.category = Category::PlayerAircraft;
 	}
 }
 
@@ -95,12 +99,24 @@ sf::Keyboard::Key InputHandler::getAssignedKey(Action action) const
 	return sf::Keyboard::Unknown;
 }
 
+void InputHandler::setMissionStatus(MissionStatus status)
+{
+    mCurrentMissionStatus = status;
+}
+
+InputHandler::MissionStatus InputHandler::getMissionStatus() const
+{
+    return mCurrentMissionStatus;
+}
+
 void InputHandler::initialiseActions()
 {
-    mActionBinding[MoveLeft].action	 = derivedAction<SceneNode>(DebugAction("MoveLeft Triggered"));
-    mActionBinding[MoveRight].action = derivedAction<SceneNode>(DebugAction("MoveRight Triggered"));
-    mActionBinding[MoveUp].action    = derivedAction<SceneNode>(DebugAction("MoveUp Triggered"));
-    mActionBinding[MoveDown].action  = derivedAction<SceneNode>(DebugAction("MoveDown Triggered"));
+    mActionBinding[MoveLeft].action	      = derivedAction<Aircraft>(AircraftMover(-1, 0));
+    mActionBinding[MoveRight].action      = derivedAction<Aircraft>(AircraftMover(+1, 0));
+    mActionBinding[MoveUp].action         = derivedAction<Aircraft>(AircraftMover(0, -1));
+    mActionBinding[MoveDown].action         = derivedAction<Aircraft>(AircraftMover(0, +1));
+    mActionBinding[Fire].action           = derivedAction<Aircraft>([] (Aircraft& a, sf::Time) {a.fire();});
+    mActionBinding[LaunchMissile].action  = derivedAction<Aircraft>([] (Aircraft& a, sf::Time) {a.launchMissile();});
 }
 
 bool InputHandler::isRealTimeAction(Action action)
@@ -111,6 +127,7 @@ bool InputHandler::isRealTimeAction(Action action)
         case MoveRight:
         case MoveDown:
         case MoveUp:
+		case Fire:
             return true;
 
         default:

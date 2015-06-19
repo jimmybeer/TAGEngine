@@ -1,10 +1,13 @@
 #include "GameState.hpp"
+#include <SFML/Graphics/RenderWindow.hpp>
 
 GameState::GameState(StateStack& stack, Context context)
  : State(stack, context)
- , mWorld(*context.window)
+ , mWorld(*context.window, *context.fonts)
  , mInputHandler(*context.inputHandler)
-{}
+{
+    mInputHandler.setMissionStatus(InputHandler::MissionRunning);
+}
 
 void GameState::draw()
 {
@@ -15,6 +18,17 @@ bool GameState::update(sf::Time dt)
 {
     mWorld.update(dt);
 	
+	if(!mWorld.hasAlivePlayer())
+	{
+	    mInputHandler.setMissionStatus(InputHandler::MissionFailure);
+		requestStackPush(States::GameOver);
+	}
+	else if(mWorld.hasPlayerReachedEnd())
+	{
+	    mInputHandler.setMissionStatus(InputHandler::MissionSuccess);
+		requestStackPush(States::GameOver);
+	}
+	    
 	CommandQueue& commands = mWorld.getCommandQueue();
 	mInputHandler.handleRealTimeInput(commands);
 	

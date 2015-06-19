@@ -1,4 +1,5 @@
 #include "PauseState.hpp"
+#include "Button.hpp"
 #include "Utility.hpp"
 #include "ResourceHolder.hpp"
 
@@ -10,21 +11,36 @@ PauseState::PauseState(StateStack& stack, Context context)
  : State(stack, context)
  , mBackgroundSprite()
  , mPausedText()
- , mInstructionText()
+ , mGuiContainer()
 {
     sf::Font& font = context.fonts->get(Fonts::Main);
-	sf::Vector2f viewSize = context.window->getView().getSize();
+	sf::Vector2f windowSize = context.window->getView().getSize();
 	
 	mPausedText.setFont(font);
 	mPausedText.setString("Paused");
 	mPausedText.setCharacterSize(70);
 	centerOrigin(mPausedText);
-	mPausedText.setPosition(0.5f * viewSize.x, 0.4f * viewSize.y);
+	mPausedText.setPosition(0.5f * windowSize.x, 0.4f * windowSize.y);
 	
-	mInstructionText.setFont(font);
-	mInstructionText.setString("(Press Backspace to return to the main menu)");
-	centerOrigin(mInstructionText);
-	mInstructionText.setPosition(0.5f * viewSize.x, 0.6f * viewSize.y);
+	auto returnButton = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
+	returnButton->setPosition(0.5f * windowSize.x - 100, 0.4f * windowSize.y + 75);
+	returnButton->setText("Return");
+	returnButton->setCallback([this] ()
+	{
+	    requestStackPop();
+	});
+	
+	auto menuButton = std::make_shared<GUI::Button>(*context.fonts, *context.textures);
+	menuButton->setPosition(0.5f * windowSize.x - 100, 0.4f * windowSize.y + 125);
+	menuButton->setText("Back to Menu");
+	menuButton->setCallback([this] ()
+	{
+	    requestStackClear();
+		requestStackPush(States::Menu);
+	});
+	
+	mGuiContainer.pack(returnButton);
+	mGuiContainer.pack(menuButton);
 }
 
 void PauseState::draw()
@@ -38,7 +54,7 @@ void PauseState::draw()
 	
 	window.draw(backgroundShape);
 	window.draw(mPausedText);
-	window.draw(mInstructionText);
+	window.draw(mGuiContainer);
 }
 
 bool PauseState::update(sf::Time)
@@ -48,21 +64,6 @@ bool PauseState::update(sf::Time)
 
 bool PauseState::handleEvent(const sf::Event& event)
 {
-    if(event.type != sf::Event::KeyPressed)
-	{
-	    return false;
-	}
-	
-	if(event.key.code == sf::Keyboard::Escape)
-	{
-	    requestStackPop();
-	}
-	
-	if(event.key.code == sf::Keyboard::BackSpace)
-	{
-	    requestStackClear();
-        requestStackPush(States::Menu);
-	}
-	
+    mGuiContainer.handleEvent(event);	
 	return false;
 }

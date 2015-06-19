@@ -11,6 +11,8 @@ namespace sf
 	class Text;
 }
 
+class Animation;
+
 // Since std::to_string doesn't work on MinGW we have implemented 
 // our own to support all platforms
 template <typename T>
@@ -22,6 +24,7 @@ std::string toString(sf::Keyboard::Key key);
 // Centers the origin of the supplied subject.
 void centerOrigin(sf::Sprite& sprite);
 void centerOrigin(sf::Text& text);
+void centerOrigin(Animation& animation);
 
 // Degree/radian conversion
 float toDegree(float radian);

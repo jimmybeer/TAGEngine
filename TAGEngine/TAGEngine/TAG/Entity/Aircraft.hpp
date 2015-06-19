@@ -5,8 +5,9 @@
 #include "ResourceIdentifiers.hpp"
 #include "Projectile.hpp"
 #include "TextNode.hpp"
+#include "Animation.hpp"
 
-#include <SFML/Graphics.Sprite.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 class Aircraft : public Entity
 {
@@ -23,7 +24,8 @@ public:
 	
 	virtual unsigned int getCategory() const;
 	virtual sf::FloatRect getBoundingRect() const;
-	vitual bool isMarkedForRemoval() const;
+	virtual void remove();
+	virtual bool isMarkedForRemoval() const;
 	bool isAllied() const;
 	float getMaxSpeed() const;
 	
@@ -47,17 +49,20 @@ private:
 	void createPickUp(SceneNode& node, const TextureHolder& textures) const;
 	
 	void updateTexts();
+	void updateRollAnimation();
 	
 	Type			mType;
 	sf::Sprite		mSprite;
+	Animation		mExplosion;
 	
 	Command 		mFireCommand;
 	Command 		mMissileCommand;
 	
 	sf::Time		mFireCountdown;
 	bool			mIsFiring;
-	bool			mIsLaunching Missile;
-	bool			mIsMarkedForRemoval;
+	bool			mIsLaunchingMissile;
+	bool			mShowExplosion;
+	bool			mSpawnedPickup;
 		
 	int				mFireRateLevel;
 	int				mSpreadLevel;
@@ -67,5 +72,5 @@ private:
 	float			mTravelledDistance;
 	std::size_t		mDirectionIndex;
 	TextNode*		mHealthDisplay;
-	TextNode*		mMissileDiplay;
+	TextNode*		mMissileDisplay;
 };

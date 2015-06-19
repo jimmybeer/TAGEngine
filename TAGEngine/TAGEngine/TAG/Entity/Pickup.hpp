@@ -31,5 +31,5 @@ protected:
 	
 private:
     Type mType;
-    sf::Sprite mSprite;
+	sf::Sprite mSprite;
 };

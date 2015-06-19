@@ -5,10 +5,10 @@
 #include "TitleState.hpp"
 #include "MenuState.hpp"
 #include "GameState.hpp"
+#include "PauseState.hpp"
+#include "GameOverState.hpp"
 #include "SettingsStates.hpp"
 #include "ResourcePath.hpp"
-
-#include <iostream>
 
 const sf::Time Application::TimePerFrame = sf::seconds(1.f/60.f);
 
@@ -26,11 +26,9 @@ Application::Application(int w, int h, const std::string& title)
 {
     mWindow.setKeyRepeatEnabled(false);
     
-    mFonts.load(Fonts::Main, resourcePath() + "sansation.ttf");
-    mTextures.load(Textures::TitleScreen, resourcePath() + "TitleScreen.png");
-    mTextures.load(Textures::ButtonNormal, resourcePath() + "ButtonNormal.png");
-    mTextures.load(Textures::ButtonSelected, resourcePath() + "ButtonSelected.png");
-    mTextures.load(Textures::ButtonPressed, resourcePath() + "ButtonPressed.png");
+    mFonts.load(Fonts::Main, resourcePath() + FONTS + "sansation.ttf");
+    mTextures.load(Textures::TitleScreen, resourcePath() + TEXTURES + "TitleScreen.png");
+    mTextures.load(Textures::Buttons, resourcePath() + TEXTURES + "Buttons.png");
     
     mStatisticsText.setFont(mFonts.get(Fonts::Main));
     mStatisticsText.setPosition(5.f, 5.f);
@@ -75,8 +73,6 @@ void Application::processInput()
     sf::Event event;
 	while(mWindow.pollEvent(event))
 	{
-        std::cout << "Event: " << event.type << std::endl;
-        
 	    mStateStack.handleEvent(event);
 		
 	    switch(event.type)
@@ -135,8 +131,9 @@ void Application::registerStates()
     mStateStack.registerState<TitleState>(States::Title);
     mStateStack.registerState<MenuState>(States::Menu);
     mStateStack.registerState<GameState>(States::Game);
-    //mStateStack.registerState<PauseState>(States::Pause);
+    mStateStack.registerState<PauseState>(States::Pause);
     mStateStack.registerState<SettingsState>(States::Settings);
+    mStateStack.registerState<GameOverState>(States::GameOver);
 }
 
 void Application::focusGained()
