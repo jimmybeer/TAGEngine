@@ -17,7 +17,9 @@ Application::Application(int w, int h, const std::string& title)
  , mTextures()
  , mFonts()
  , mInputHandler()
- , mStateStack(State::Context(mWindow, mTextures, mFonts, mInputHandler))
+ , mMusic()
+ , mSounds()
+ , mStateStack(State::Context(mWindow, mTextures, mFonts, mInputHandler, mMusic, mSounds))
  , mStatisticsText()
  , mStatisticsUpdateTime()
  , mStatisticsNumFrames(0)
@@ -25,8 +27,10 @@ Application::Application(int w, int h, const std::string& title)
  , mIsPaused(false)
 {
     mWindow.setKeyRepeatEnabled(false);
+	mWindow.setVerticalSyncEnabled(true);
     
     mFonts.load(Fonts::Main, resourcePath() + FONTS + "sansation.ttf");
+	
     mTextures.load(Textures::TitleScreen, resourcePath() + TEXTURES + "TitleScreen.png");
     mTextures.load(Textures::Buttons, resourcePath() + TEXTURES + "Buttons.png");
     
@@ -36,6 +40,8 @@ Application::Application(int w, int h, const std::string& title)
 	
 	registerStates();
 	mStateStack.pushState(States::Title);
+	
+	mMusic.setVolume(0.25);
 }
 
 void Application::run()

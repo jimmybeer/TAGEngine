@@ -57,6 +57,18 @@
 		FF9D6FD51B34C6F000A995F0 /* FinishLine.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCE1B34C6F000A995F0 /* FinishLine.png */; };
 		FF9D6FD61B34C6F000A995F0 /* Jungle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FCF1B34C6F000A995F0 /* Jungle.png */; };
 		FF9D6FD71B34C6F000A995F0 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = FF9D6FD01B34C6F000A995F0 /* Particle.png */; };
+		FFAC745E1B3B49250061C374 /* SoundNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFAC745C1B3B49250061C374 /* SoundNode.cpp */; };
+		FFAC74641B3B4A1E0061C374 /* MusicPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFAC74601B3B4A1E0061C374 /* MusicPlayer.cpp */; };
+		FFAC74651B3B4A1E0061C374 /* SoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFAC74621B3B4A1E0061C374 /* SoundPlayer.cpp */; };
+		FFAC74711B3B4AC00061C374 /* MenuTheme.ogg in Resources */ = {isa = PBXBuildFile; fileRef = FFAC74671B3B4AC00061C374 /* MenuTheme.ogg */; };
+		FFAC74721B3B4AC00061C374 /* MissionTheme.ogg in Resources */ = {isa = PBXBuildFile; fileRef = FFAC74681B3B4AC00061C374 /* MissionTheme.ogg */; };
+		FFAC74731B3B4AC00061C374 /* AlliedGunfire.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746A1B3B4AC00061C374 /* AlliedGunfire.wav */; };
+		FFAC74741B3B4AC00061C374 /* Button.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746B1B3B4AC00061C374 /* Button.wav */; };
+		FFAC74751B3B4AC00061C374 /* CollectPickup.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746C1B3B4AC00061C374 /* CollectPickup.wav */; };
+		FFAC74761B3B4AC00061C374 /* EnemyGunfire.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746D1B3B4AC00061C374 /* EnemyGunfire.wav */; };
+		FFAC74771B3B4AC00061C374 /* Explosion1.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746E1B3B4AC00061C374 /* Explosion1.wav */; };
+		FFAC74781B3B4AC00061C374 /* Explosion2.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746F1B3B4AC00061C374 /* Explosion2.wav */; };
+		FFAC74791B3B4AC00061C374 /* LaunchMissile.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC74701B3B4AC00061C374 /* LaunchMissile.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +163,21 @@
 		FF9D6FCE1B34C6F000A995F0 /* FinishLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FinishLine.png; sourceTree = "<group>"; };
 		FF9D6FCF1B34C6F000A995F0 /* Jungle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jungle.png; sourceTree = "<group>"; };
 		FF9D6FD01B34C6F000A995F0 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
+		FFAC745C1B3B49250061C374 /* SoundNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundNode.cpp; sourceTree = "<group>"; };
+		FFAC745D1B3B49250061C374 /* SoundNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundNode.hpp; sourceTree = "<group>"; };
+		FFAC74601B3B4A1E0061C374 /* MusicPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MusicPlayer.cpp; sourceTree = "<group>"; };
+		FFAC74611B3B4A1E0061C374 /* MusicPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MusicPlayer.hpp; sourceTree = "<group>"; };
+		FFAC74621B3B4A1E0061C374 /* SoundPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundPlayer.cpp; sourceTree = "<group>"; };
+		FFAC74631B3B4A1E0061C374 /* SoundPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundPlayer.hpp; sourceTree = "<group>"; };
+		FFAC74671B3B4AC00061C374 /* MenuTheme.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = MenuTheme.ogg; sourceTree = "<group>"; };
+		FFAC74681B3B4AC00061C374 /* MissionTheme.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = MissionTheme.ogg; sourceTree = "<group>"; };
+		FFAC746A1B3B4AC00061C374 /* AlliedGunfire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AlliedGunfire.wav; sourceTree = "<group>"; };
+		FFAC746B1B3B4AC00061C374 /* Button.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Button.wav; sourceTree = "<group>"; };
+		FFAC746C1B3B4AC00061C374 /* CollectPickup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CollectPickup.wav; sourceTree = "<group>"; };
+		FFAC746D1B3B4AC00061C374 /* EnemyGunfire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EnemyGunfire.wav; sourceTree = "<group>"; };
+		FFAC746E1B3B4AC00061C374 /* Explosion1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion1.wav; sourceTree = "<group>"; };
+		FFAC746F1B3B4AC00061C374 /* Explosion2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion2.wav; sourceTree = "<group>"; };
+		FFAC74701B3B4AC00061C374 /* LaunchMissile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LaunchMissile.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +256,7 @@
 		FF3E06A41B2F5175008F1A1C /* TAG */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC745F1B3B4A1E0061C374 /* Audio */,
 				FF9D6FB11B34BADC00A995F0 /* Particles */,
 				FF9D6FA71B34BAB600A995F0 /* Gfx */,
 				FF02D3EE1B320F7100D9F30F /* Entity */,
@@ -298,6 +326,8 @@
 		FF3E06BC1B2F5175008F1A1C /* SceneNodes */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC745C1B3B49250061C374 /* SoundNode.cpp */,
+				FFAC745D1B3B49250061C374 /* SoundNode.hpp */,
 				FF9D6FB31B34BAEF00A995F0 /* EmitterNode.cpp */,
 				FF9D6FB41B34BAEF00A995F0 /* EmitterNode.hpp */,
 				FF9D6FB51B34BAEF00A995F0 /* ParticleNode.cpp */,
@@ -380,6 +410,8 @@
 		FF9D6FB91B34BB2800A995F0 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				FFAC74661B3B4AC00061C374 /* Music */,
+				FFAC74691B3B4AC00061C374 /* Sounds */,
 				FF9D6FC01B34C5EE00A995F0 /* Shaders */,
 				FF9D6FBA1B34BB2800A995F0 /* Fonts */,
 				FF9D6FBC1B34BB2800A995F0 /* Textures */,
@@ -419,6 +451,40 @@
 				FF9D6FC91B34C69900A995F0 /* GaussianBlur.frag */,
 			);
 			path = Shaders;
+			sourceTree = "<group>";
+		};
+		FFAC745F1B3B4A1E0061C374 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				FFAC74601B3B4A1E0061C374 /* MusicPlayer.cpp */,
+				FFAC74611B3B4A1E0061C374 /* MusicPlayer.hpp */,
+				FFAC74621B3B4A1E0061C374 /* SoundPlayer.cpp */,
+				FFAC74631B3B4A1E0061C374 /* SoundPlayer.hpp */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		FFAC74661B3B4AC00061C374 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				FFAC74671B3B4AC00061C374 /* MenuTheme.ogg */,
+				FFAC74681B3B4AC00061C374 /* MissionTheme.ogg */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		FFAC74691B3B4AC00061C374 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				FFAC746A1B3B4AC00061C374 /* AlliedGunfire.wav */,
+				FFAC746B1B3B4AC00061C374 /* Button.wav */,
+				FFAC746C1B3B4AC00061C374 /* CollectPickup.wav */,
+				FFAC746D1B3B4AC00061C374 /* EnemyGunfire.wav */,
+				FFAC746E1B3B4AC00061C374 /* Explosion1.wav */,
+				FFAC746F1B3B4AC00061C374 /* Explosion2.wav */,
+				FFAC74701B3B4AC00061C374 /* LaunchMissile.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -478,18 +544,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFAC74711B3B4AC00061C374 /* MenuTheme.ogg in Resources */,
 				FF9D6FBF1B34BB2800A995F0 /* TitleScreen.png in Resources */,
 				FF9D6FBE1B34BB2800A995F0 /* sansation.ttf in Resources */,
+				FFAC74741B3B4AC00061C374 /* Button.wav in Resources */,
 				FF9D6FC21B34C60900A995F0 /* Add.frag in Resources */,
 				FF9D6FC61B34C65700A995F0 /* DownSample.frag in Resources */,
+				FFAC74791B3B4AC00061C374 /* LaunchMissile.wav in Resources */,
 				FF9D6FD71B34C6F000A995F0 /* Particle.png in Resources */,
+				FFAC74731B3B4AC00061C374 /* AlliedGunfire.wav in Resources */,
+				FFAC74761B3B4AC00061C374 /* EnemyGunfire.wav in Resources */,
 				FF3E06F11B2F5175008F1A1C /* Utility.inl in Resources */,
+				FFAC74781B3B4AC00061C374 /* Explosion2.wav in Resources */,
 				FF9D6FD41B34C6F000A995F0 /* Explosion.png in Resources */,
+				FFAC74721B3B4AC00061C374 /* MissionTheme.ogg in Resources */,
+				FFAC74751B3B4AC00061C374 /* CollectPickup.wav in Resources */,
 				FF9D6FD61B34C6F000A995F0 /* Jungle.png in Resources */,
 				FF9D6FC41B34C63200A995F0 /* Brightness.frag in Resources */,
 				FF9D6FC81B34C67A00A995F0 /* Fullpass.vert in Resources */,
 				FF9D6FD51B34C6F000A995F0 /* FinishLine.png in Resources */,
 				FF9D6FD21B34C6F000A995F0 /* Buttons.png in Resources */,
+				FFAC74771B3B4AC00061C374 /* Explosion1.wav in Resources */,
 				FF3E06E41B2F5175008F1A1C /* ResourceHolder.inl in Resources */,
 				FF9D6FCA1B34C69900A995F0 /* GaussianBlur.frag in Resources */,
 				FF9D6FD31B34C6F000A995F0 /* Entities.png in Resources */,
@@ -523,11 +598,13 @@
 				FF3E06ED1B2F5175008F1A1C /* StateStack.cpp in Sources */,
 				FF9D6FAE1B34BAB600A995F0 /* Animation.cpp in Sources */,
 				FF9D6FB01B34BAB600A995F0 /* PostEffect.cpp in Sources */,
+				FFAC74651B3B4A1E0061C374 /* SoundPlayer.cpp in Sources */,
 				FF3E06EB1B2F5175008F1A1C /* SettingsStates.cpp in Sources */,
 				FF3E06E51B2F5175008F1A1C /* SceneNode.cpp in Sources */,
 				FF9D6FB71B34BAEF00A995F0 /* EmitterNode.cpp in Sources */,
 				FF3E06951B2F509B008F1A1C /* main.cpp in Sources */,
 				FF9D6FAF1B34BAB600A995F0 /* BloomEffect.cpp in Sources */,
+				FFAC74641B3B4A1E0061C374 /* MusicPlayer.cpp in Sources */,
 				FF3E06E11B2F5175008F1A1C /* Container.cpp in Sources */,
 				FF3E06EE1B2F5175008F1A1C /* TitleState.cpp in Sources */,
 				FF3E06E81B2F5175008F1A1C /* LoadingState.cpp in Sources */,
@@ -548,6 +625,7 @@
 				FF02D3FA1B320F7100D9F30F /* DataTables.cpp in Sources */,
 				FF02D3FD1B320F7100D9F30F /* Projectile.cpp in Sources */,
 				FF3E06E91B2F5175008F1A1C /* MenuState.cpp in Sources */,
+				FFAC745E1B3B49250061C374 /* SoundNode.cpp in Sources */,
 				FF3E06F01B2F5175008F1A1C /* Utility.cpp in Sources */,
 				FF3E06EA1B2F5175008F1A1C /* PauseState.cpp in Sources */,
 				FF02D3FB1B320F7100D9F30F /* Entity.cpp in Sources */,

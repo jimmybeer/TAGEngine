@@ -4,6 +4,7 @@
 #include "TextNode.hpp"
 #include "ParticleNode.hpp"
 #include "ResourcePath.hpp"
+#include "SoundNode.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
@@ -11,11 +12,12 @@
 #include <cmath>
 #include <limits>
 
-World::World(sf::RenderTarget& outputTarget, FontHolder& fonts)
+World::World(sf::RenderTarget& outputTarget, FontHolder& fonts, SoundPlayer& sounds)
  : mTarget(outputTarget)
  , mSceneTexture()
  , mWorldView(outputTarget.getDefaultView())
  , mFonts(fonts)
+ , mSounds(sounds)
  , mTextures()
  , mSceneGraph()
  , mSceneLayers()
@@ -66,6 +68,8 @@ void World::update(sf::Time dt)
 	
     mSceneGraph.update(dt, mCommandQueue);
 	adaptPlayerPosition();
+	
+	updateSounds();
 }
 
 void World::draw()
@@ -182,6 +186,7 @@ void World::handleCollisions()
 			// Apply pickup effect to player, destroy projectile
 			pickup.apply(player);
 			pickup.destroy();
+			player.playLocalSound(mCommandQueue, SoundEffect::CollectPickup);
 		}
 		else if(matchCategories(pair, Category::EnemyAircraft, Category::AlliedProjectile)
 		     || matchCategories(pair, Category::PlayerAircraft, Category::EnemyProjectile))
@@ -194,6 +199,15 @@ void World::handleCollisions()
 			projectile.destroy();
 		}
 	}
+}
+
+void World::updateSounds()
+{
+    // Set listener's position to player position
+	mSounds.setListenerPosition(mPlayerAircraft->getWorldPosition());
+	
+	// Remove unused sounds
+	mSounds.removeStoppedSounds();
 }
 
 void World::buildScene()
@@ -235,6 +249,10 @@ void World::buildScene()
 	// Add propellant
 	std::unique_ptr<ParticleNode> propellantNode(new ParticleNode(Particle::Propellant, mTextures));
 	mSceneLayers[LowerAir]->attachChild(std::move(propellantNode));
+	
+	// Add sound effect node
+	std::unique_ptr<SoundNode> soundNode(new SoundNode(mSounds));
+	mSceneGraph.attachChild(std::move(soundNode));
 	
 	// Add player's aircraft
     std::unique_ptr<Aircraft> player(new Aircraft(Aircraft::Eagle, mTextures, mFonts));

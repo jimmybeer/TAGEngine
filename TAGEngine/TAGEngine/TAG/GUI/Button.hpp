@@ -3,6 +3,7 @@
 #include "Component.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "ResourceHolder.hpp"
+#include "State.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -11,6 +12,8 @@
 #include <string>
 #include <memory>
 #include <functional>
+
+class SoundPlayer; 
 
 namespace GUI
 {
@@ -29,7 +32,7 @@ public:
         ButtonCount
     };
 	
-	Button(const FontHolder& fonts, const TextureHolder& textures);
+	Button(State::Context context);
 	
 	void setCallback(Callback callback);
 	void setText(const std::string& text);
@@ -52,6 +55,7 @@ private:
 	sf::Sprite mSprite;
 	sf::Text mText;
 	bool mIsToggle;
+	SoundPlayer& mSounds;
 };
 
 }

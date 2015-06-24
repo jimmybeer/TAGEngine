@@ -37,6 +37,10 @@
 //"Media/Textures/"
 #define SHADERS ""
 //"Media/Shaders/"
+#define MUSIC ""
+//"Media/Music/"
+#define SFX ""
+//"Media/Sounds/"
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the path to the resource folder.

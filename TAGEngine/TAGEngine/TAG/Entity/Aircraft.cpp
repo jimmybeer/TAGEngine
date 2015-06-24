@@ -3,6 +3,7 @@
 #include "Utility.hpp"
 #include "Pickup.hpp"
 #include "CommandQueue.hpp"
+#include "SoundNode.hpp"
 #include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -27,6 +28,7 @@ Aircraft::Aircraft(Type type, const TextureHolder& textures, const FontHolder& f
  , mIsFiring(false)
  , mIsLaunchingMissile(false)
  , mShowExplosion(true)
+ , mPlayedExplosionSound(false)
  , mSpawnedPickup(false)
  , mFireRateLevel(1)
  , mSpreadLevel(1)
@@ -153,6 +155,21 @@ void Aircraft::launchMissile()
 		--mMissileAmmo;
 	}
 }
+
+void Aircraft::playLocalSound(CommandQueue& commands, SoundEffect::ID effect)
+{
+    sf::Vector2f worldPosition = getWorldPosition();
+	
+	Command command;
+	command.category = Category::SoundEffect;
+	command.action = derivedAction<SoundNode>(
+	    [effect, worldPosition] (SoundNode& node, sf::Time)
+		{
+		    node.playSound(effect, worldPosition);
+		});
+    
+    commands.push(command);
+}
 	
 void Aircraft::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -177,6 +194,15 @@ void Aircraft::updateCurrent(sf::Time dt, CommandQueue& commands)
 	{
 	    checkPickupDrop(commands);
 		mExplosion.update(dt);
+		
+		// Play explosion sound only once
+		if(!mPlayedExplosionSound)
+        {
+		    SoundEffect::ID soundEffect = (randomInt(2) == 0) ? SoundEffect::Explosion1 : SoundEffect::Explosion2;
+			playLocalSound(commands, soundEffect);
+			
+			mPlayedExplosionSound = true;
+		}
 		return;
 	}
 	
@@ -234,6 +260,8 @@ void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
 	{
 	    // Inteval expired: We can fira a new bullet
 		commands.push(mFireCommand);
+        playLocalSound(commands, isAllied() ? SoundEffect::AlliedGunfire : SoundEffect::EnemyGunfire);
+		
 		mFireCountdown += Table[mType].fireInterval / (mFireRateLevel + 1.f);
 		mIsFiring = false;
 	}
@@ -248,6 +276,7 @@ void Aircraft::checkProjectileLaunch(sf::Time dt, CommandQueue& commands)
 	if(mIsLaunchingMissile)
 	{
 	    commands.push(mMissileCommand);
+		playLocalSound(commands, SoundEffect::LaunchMissile);
 		mIsLaunchingMissile = false;
 	}
 }

@@ -15,6 +15,8 @@ namespace sf
 
 class StateStack;
 class InputHandler;
+class MusicPlayer;
+class SoundPlayer;
 
 class State
 {
@@ -22,11 +24,15 @@ public:
     typedef std::unique_ptr<State> Ptr;
 	struct Context
 	{
-        Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandler);
+        Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts, InputHandler& inputHandler,
+		        MusicPlayer& music, SoundPlayer& sounds);
+				
 		sf::RenderWindow* window;
 		TextureHolder* textures;
 		FontHolder* fonts;
 		InputHandler* inputHandler;
+		MusicPlayer* music;
+		SoundPlayer* sounds;
 	};
 	
 	State(StateStack& stack, Context context);
