@@ -2,19 +2,73 @@
 #include "ParticleNode.hpp"
 #include "CommandQueue.hpp"
 #include "Command.hpp"
+#include "DataTables.hpp"
+
+namespace
+{
+    const std::vector<ParticleData> Table = initialiseParticleData();
+}
 
 EmitterNode::EmitterNode(Particle::Type type)
  : SceneNode()
+ , mEnabled(true)
+ , mEmissionRate(30.f)
+ , mEmissionInterval(sf::seconds(1.f) / mEmissionRate)
  , mAccumulatedTime(sf::Time::Zero)
  , mType(type)
  , mParticleSystem(nullptr)
+ , mTimeBound(false)
+ , mLifetime(sf::Time::Zero)
+ , mTotalLife(sf::Time::Zero)
 {}
+	
+void EmitterNode::setEmissionRate(float particlesPerSecond)
+{
+    mEmissionRate = particlesPerSecond;
+	mEmissionInterval = sf::seconds(1.f) / mEmissionRate;
+}
+
+void EmitterNode::setTotalLifetime(sf::Time time)
+{
+    if(time == sf::Time::Zero)
+	{
+	    mTimeBound = false;
+	}
+	else
+	{
+	    mTimeBound = true;
+	}
+	mTotalLife = time;
+}
+
+void EmitterNode::setEnabled(bool enable)
+{
+    mEnabled = enable;
+}
+
+bool EmitterNode::isEnabled() const
+{
+    return mEnabled;
+}
 
 void EmitterNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 {
     if(mParticleSystem)
 	{
-	    emitParticles(dt);
+	    if(mEnabled)
+		{
+	        if(mTimeBound)
+		    {
+		        mLifetime += dt;
+			
+			    if(mLifetime > mTotalLife)
+			    {
+			        mEnabled = false;
+			    	return;
+			    }
+		    }
+	        emitParticles(dt);
+		}
 	}
 	else
 	{
@@ -36,15 +90,20 @@ void EmitterNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 }
 
 void EmitterNode::emitParticles(sf::Time dt)
-{
-    const float emissionRate = 30.f;
-	const sf::Time interval = sf::seconds(1.f) / emissionRate;
-	
+{	
 	mAccumulatedTime += dt;
 	
-	while(mAccumulatedTime > interval)
+	while(mAccumulatedTime > mEmissionInterval)
 	{
-	    mAccumulatedTime -= interval;
-		mParticleSystem->addParticle(getWorldPosition());
+	    mAccumulatedTime -= mEmissionInterval;
+		
+	    Particle particle;
+	    particle.position = getWorldPosition();
+	    particle.color = Table[mType].color;
+	    particle.lifetime = sf::Time::Zero;
+	    particle.totalLife = Table[mType].lifeTime;
+		particle.textureIndex = 0;
+		
+		mParticleSystem->addParticle(particle);
 	}
 }
