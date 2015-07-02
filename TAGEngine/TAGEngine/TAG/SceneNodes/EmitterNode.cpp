@@ -102,6 +102,7 @@ void EmitterNode::emitParticles(sf::Time dt)
 	    particle.color = Table[mType].color;
 	    particle.lifetime = sf::Time::Zero;
 	    particle.totalLife = Table[mType].lifeTime;
+        particle.scale = Table[mType].scale;
 		particle.textureIndex = 0;
 		
 		mParticleSystem->addParticle(particle);

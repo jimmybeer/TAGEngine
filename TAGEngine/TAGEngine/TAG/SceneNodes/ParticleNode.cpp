@@ -1,11 +1,13 @@
-#include "ParticleNode.hpp"
+ #include "ParticleNode.hpp"
 #include "DataTables.hpp"
 #include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
 
 #include <algorithm>
+#include <iostream>
 
 namespace
 {
@@ -178,11 +180,14 @@ void ParticleNode::computeVertices() const
 		assert(p.textureIndex == 0 || p.textureIndex < mTextureRects.size());
 		
 		const auto& quad = mQuads[p.textureIndex];
+        sf::Vector2f pos;
 		for(unsigned int i = 0; i < 4; ++i)
 		{
 		    sf::Vertex vertex;
-			vertex.position = transform.transformPoint(quad[i].position);
-			vertex.texCoords = quad[i].texCoords;
+            
+            pos = transform.transformPoint(quad[i].position);
+            vertex.position = pos;
+            vertex.texCoords = quad[i].texCoords;
 			vertex.color = p.color;
 			
 			mVertexArray.append(vertex);

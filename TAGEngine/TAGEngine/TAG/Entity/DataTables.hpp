@@ -51,6 +51,7 @@ struct ParticleData
 {
     sf::Color color;
 	sf::Time lifeTime;
+    sf::Vector2f scale;
 };
 
 std::vector<AircraftData> initialiseAircraftData();
