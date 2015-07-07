@@ -11,15 +11,15 @@ class MusicPlayer : private sf::NonCopyable
 public:
     MusicPlayer();
     
-    void addTheme(int id, const std::string& filename);
+    void addTheme(unsigned int id, const std::string& filename);
 	
-	void play(int theme);
+	void play(unsigned int theme);
 	void stop();
-	
+    
 	void setPaused(bool paused);
 	void setVolume(float volume);
 private:
     sf::Music mMusic;
-	std::map<int, std::string> mFilenames;
+	std::map<unsigned int, std::string> mFilenames;
 	float mVolume;
 };

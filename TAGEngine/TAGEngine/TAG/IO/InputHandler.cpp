@@ -36,7 +36,7 @@ void InputHandler::handleRealTimeInput(CommandQueue& commands)
     }
 }
 
-void InputHandler::assignKey(int action, sf::Keyboard::Key key)
+void InputHandler::assignKey(unsigned int action, sf::Keyboard::Key key)
 {
     // Remove all keys that already map to action
     for(auto itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )
@@ -55,7 +55,7 @@ void InputHandler::assignKey(int action, sf::Keyboard::Key key)
     mKeyBinding[key] = action;
 }
 
-sf::Keyboard::Key InputHandler::getAssignedKey(int action) const
+sf::Keyboard::Key InputHandler::getAssignedKey(unsigned int action) const
 {
     for(auto& pair: mKeyBinding)
     {
@@ -71,7 +71,7 @@ sf::Keyboard::Key InputHandler::getAssignedKey(int action) const
 void InputHandler::initialiseActions()
 {}
 
-bool InputHandler::isRealTimeAction(int action)
+bool InputHandler::isRealTimeAction(unsigned int action)
 {
     return false;
 }

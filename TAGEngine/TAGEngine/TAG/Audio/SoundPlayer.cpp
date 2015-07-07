@@ -22,17 +22,17 @@ SoundPlayer::SoundPlayer()
 	sf::Listener::setDirection(0.f, 0.f, -1.f);
 }
 
-void SoundPlayer::addSound(int id, const std::string& filename)
+void SoundPlayer::addSound(unsigned int id, const std::string& filename)
 {
     mSoundBuffers.load(id, filename);
 }
 
-void SoundPlayer::play(int effect)
+void SoundPlayer::play(unsigned int effect)
 {
     play(effect, getListenerPosition());
 }
 
-void SoundPlayer::play(int effect, sf::Vector2f position)
+void SoundPlayer::play(unsigned int effect, sf::Vector2f position)
 {
     mSounds.push_back(sf::Sound());
 	sf::Sound& sound = mSounds.back();

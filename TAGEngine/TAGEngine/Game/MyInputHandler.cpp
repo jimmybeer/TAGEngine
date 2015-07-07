@@ -63,7 +63,7 @@ void MyInputHandler::initialiseActions()
     mActionBinding[LaunchMissile].action  = derivedAction<Aircraft>([] (Aircraft& a, sf::Time) {a.launchMissile();});
 }
 
-bool MyInputHandler::isRealTimeAction(int action)
+bool MyInputHandler::isRealTimeAction(unsigned int action)
 {
     switch (action)
     {

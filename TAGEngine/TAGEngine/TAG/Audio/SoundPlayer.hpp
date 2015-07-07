@@ -15,10 +15,10 @@ class SoundPlayer : private sf::NonCopyable
 public:
     SoundPlayer();
     
-    void addSound(int id, const std::string& filename);
+    void addSound(unsigned int id, const std::string& filename);
 	
-	void play(int effect);
-	void play(int effect, sf::Vector2f position);
+	void play(unsigned int effect);
+	void play(unsigned int effect, sf::Vector2f position);
 	
 	void removeStoppedSounds();
 	void setListenerPosition(sf::Vector2f position);

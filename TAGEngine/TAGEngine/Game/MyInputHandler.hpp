@@ -36,7 +36,7 @@ public:
 	
 protected:
     void initialiseActions();
-    bool isRealTimeAction(int action);
+    bool isRealTimeAction(unsigned int action);
 	
 	MissionStatus mCurrentMissionStatus;
 };

@@ -6,12 +6,12 @@ MusicPlayer::MusicPlayer()
  , mVolume(100.f)
 {}
 
-void MusicPlayer::addTheme(int id, const std::string& filename)
+void MusicPlayer::addTheme(unsigned int id, const std::string& filename)
 {
     mFilenames[id] = filename;
 }
 
-void MusicPlayer::play(int theme)
+void MusicPlayer::play(unsigned int theme)
 {
     std::string filename = mFilenames[theme];
 	
