@@ -1,6 +1,7 @@
 #include "LoadingState.hpp"
+#include "StateIdentifiers.hpp"
 #include "Utility.hpp"
-#include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>

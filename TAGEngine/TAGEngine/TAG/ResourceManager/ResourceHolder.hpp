@@ -1,5 +1,4 @@
-#ifndef BOOK_RESOURCEHOLDER_HPP
-#define BOOK_RESOURCEHOLDER_HPP
+#pragma once
 
 #include <map>
 #include <string>
@@ -7,6 +6,13 @@
 #include <stdexcept>
 #include <cassert>
 
+namespace sf
+{
+    class Texture;
+    class Font;
+    class Shader;
+    class SoundBuffer;
+}
 
 template <typename Resource, typename Identifier>
 class ResourceHolder
@@ -30,4 +36,12 @@ private:
 };
 
 #include "ResourceHolder.inl"
-#endif // BOOK_RESOURCEHOLDER_HPP
+
+// Forward declaration and a few type definitions
+template <typename Resource, typename Identifier>
+class ResourceHolder;
+
+typedef ResourceHolder<sf::Texture, unsigned int> TextureHolder;
+typedef ResourceHolder<sf::Font, unsigned int> FontHolder;
+typedef ResourceHolder<sf::Shader, unsigned int> ShaderHolder;
+typedef ResourceHolder<sf::SoundBuffer, unsigned int> SoundBufferHolder;

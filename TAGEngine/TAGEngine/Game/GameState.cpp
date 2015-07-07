@@ -1,4 +1,5 @@
 #include "GameState.hpp"
+#include "StateIdentifiers.hpp"
 #include "MusicPlayer.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -6,9 +7,9 @@
 GameState::GameState(StateStack& stack, Context context)
  : State(stack, context)
  , mWorld(*context.window, *context.fonts, *context.sounds)
- , mInputHandler(*context.inputHandler)
+ , mInputHandler(dynamic_cast<MyInputHandler&>(*context.inputHandler))
 {
-    mInputHandler.setMissionStatus(InputHandler::MissionRunning);
+    mInputHandler.setMissionStatus(MyInputHandler::MissionRunning);
 	
 	// play theme
 	context.music->play(Music::MissionTheme);
@@ -25,12 +26,12 @@ bool GameState::update(sf::Time dt)
 	
 	if(!mWorld.hasAlivePlayer())
 	{
-	    mInputHandler.setMissionStatus(InputHandler::MissionFailure);
+	    mInputHandler.setMissionStatus(MyInputHandler::MissionFailure);
 		requestStackPush(States::GameOver);
 	}
 	else if(mWorld.hasPlayerReachedEnd())
 	{
-	    mInputHandler.setMissionStatus(InputHandler::MissionSuccess);
+	    mInputHandler.setMissionStatus(MyInputHandler::MissionSuccess);
 		requestStackPush(States::GameOver);
 	}
 	    

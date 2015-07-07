@@ -9,7 +9,7 @@
 #include <cassert>
 #include <iostream>
 
-SceneNode::SceneNode(Category::Type category)
+SceneNode::SceneNode(unsigned int category)
  : mChildren()
  , mParent(nullptr)
  , mDefaultCategory(category)

@@ -1,6 +1,6 @@
 #include "SettingsStates.hpp"
 #include "Utility.hpp"
-#include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -11,12 +11,12 @@ SettingsState::SettingsState(StateStack& stack, Context context)
     mBackgroundSprite.setTexture(context.textures->get(Textures::TitleScreen));
 
     // Build key binding buttons and labels
-    addButtonLabel(InputHandler::MoveLeft,		300.f, "Move Left", context);
-    addButtonLabel(InputHandler::MoveRight,		350.f, "Move Right", context);
-    addButtonLabel(InputHandler::MoveUp,			400.f, "Move Up", context);
-    addButtonLabel(InputHandler::MoveDown,		450.f, "Move Down", context);
-    addButtonLabel(InputHandler::Fire,			500.f, "Fire", context);
-    addButtonLabel(InputHandler::LaunchMissile,	550.f, "Missile", context);
+    addButtonLabel(MyInputHandler::MoveLeft,		300.f, "Move Left", context);
+    addButtonLabel(MyInputHandler::MoveRight,		350.f, "Move Right", context);
+    addButtonLabel(MyInputHandler::MoveUp,			400.f, "Move Up", context);
+    addButtonLabel(MyInputHandler::MoveDown,		450.f, "Move Down", context);
+    addButtonLabel(MyInputHandler::Fire,			500.f, "Fire", context);
+    addButtonLabel(MyInputHandler::LaunchMissile,	550.f, "Missile", context);
 
     updateLabels();
 
@@ -46,14 +46,14 @@ bool SettingsState::handleEvent(const sf::Event& event)
     bool isKeyBinding = false;
 
     // Iterate through all key binding buttons to see if they are being pressed, waiting for the user to enter a key
-    for (std::size_t action = 0; action < InputHandler::ActionCount; ++action)
+    for (std::size_t action = 0; action < MyInputHandler::ActionCount; ++action)
     {
         if (mBindingButtons[action]->isActive())
         {
             isKeyBinding = true;
             if (event.type == sf::Event::KeyReleased)
             {
-                getContext().inputHandler->assignKey(static_cast<InputHandler::Action>(action), event.key.code);
+                getContext().inputHandler->assignKey(static_cast<MyInputHandler::Action>(action), event.key.code);
                 mBindingButtons[action]->deactivate();
             }
             break;
@@ -77,14 +77,14 @@ void SettingsState::updateLabels()
 {
     InputHandler& inputHandler = *getContext().inputHandler;
 
-    for (std::size_t i = 0; i < InputHandler::ActionCount; ++i)
+    for (std::size_t i = 0; i < MyInputHandler::ActionCount; ++i)
     {
-        sf::Keyboard::Key key = inputHandler.getAssignedKey(static_cast<InputHandler::Action>(i));
+        sf::Keyboard::Key key = inputHandler.getAssignedKey(static_cast<MyInputHandler::Action>(i));
         mBindingLabels[i]->setText(toString(key));
     }
 }
 
-void SettingsState::addButtonLabel(InputHandler::Action action, float y, const std::string& text, Context context)
+void SettingsState::addButtonLabel(MyInputHandler::Action action, float y, const std::string& text, Context context)
 {
     mBindingButtons[action] = std::make_shared<GUI::Button>(context);
     mBindingButtons[action]->setPosition(80.f, y);

@@ -21,7 +21,7 @@ public:
     typedef std::unique_ptr<SceneNode> Ptr;
 	typedef std::pair<SceneNode*, SceneNode*> Pair;
 	
-	SceneNode(Category::Type category = Category::None);
+	SceneNode(unsigned int category = Category::None);
 	
 	void attachChild(Ptr child);
 	Ptr detachChild(const SceneNode& node);
@@ -54,7 +54,7 @@ private:
 	
 	std::vector<Ptr> mChildren;
 	SceneNode* mParent;
-	Category::Type mDefaultCategory;
+	unsigned int mDefaultCategory;
 };
 
 bool collision(const SceneNode& lhs, const SceneNode& rhs);

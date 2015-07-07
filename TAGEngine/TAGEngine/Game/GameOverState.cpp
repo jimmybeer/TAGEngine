@@ -1,7 +1,10 @@
 #include "GameOverState.hpp"
+#include "StateIdentifiers.hpp"
 #include "Utility.hpp"
-#include "InputHandler.hpp"
+#include "MyInputHandler.hpp"
 #include "ResourceHolder.hpp"
+#include "ResourceIdentifiers.hpp"
+
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -16,7 +19,7 @@ GameOverState::GameOverState(StateStack& stack, Context context)
 	sf::Vector2f windowSize(context.window->getSize());
 	
 	mGameOverText.setFont(font);
-	if(context.inputHandler->getMissionStatus() == InputHandler::MissionFailure)
+	if(reinterpret_cast<MyInputHandler*>(context.inputHandler)->getMissionStatus() == MyInputHandler::MissionFailure)
 	{
 	    mGameOverText.setString("Mission failed!");
 	}

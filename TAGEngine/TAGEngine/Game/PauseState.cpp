@@ -1,4 +1,5 @@
 #include "PauseState.hpp"
+#include "StateIdentifiers.hpp"
 #include "Button.hpp"
 #include "Utility.hpp"
 #include "ResourceHolder.hpp"

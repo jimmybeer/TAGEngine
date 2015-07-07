@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ResourceHolder.hpp"
-#include "ResourceIdentifiers.hpp"
 
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/NonCopyable.hpp>
@@ -9,14 +8,17 @@
 #include <SFML/Audio/Sound.hpp>
 
 #include <list>
+#include <string>
 
 class SoundPlayer : private sf::NonCopyable
 {
 public:
     SoundPlayer();
+    
+    void addSound(int id, const std::string& filename);
 	
-	void play(SoundEffect::ID effect);
-	void play(SoundEffect::ID effect, sf::Vector2f position);
+	void play(int effect);
+	void play(int effect, sf::Vector2f position);
 	
 	void removeStoppedSounds();
 	void setListenerPosition(sf::Vector2f position);

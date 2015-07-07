@@ -2,10 +2,10 @@
 
 #include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
-#include "InputHandler.hpp"
+#include "MyInputHandler.hpp"
 #include "StateStack.hpp"
-#include "MusicPlayer.hpp"
-#include "SoundPlayer.hpp"
+#include "AircraftMusicPlayer.hpp"
+#include "AircraftSoundPlayer.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -35,10 +35,10 @@ private:
 	sf::RenderWindow mWindow;
 	TextureHolder mTextures;
 	FontHolder mFonts;
-	InputHandler mInputHandler;
-	
-	MusicPlayer mMusic;
-	SoundPlayer mSounds;
+	MyInputHandler mInputHandler;
+
+    AircraftMusicPlayer mMusic;
+    AircraftSoundPlayer mSounds;
 	StateStack mStateStack;
 	
 	sf::Text mStatisticsText;

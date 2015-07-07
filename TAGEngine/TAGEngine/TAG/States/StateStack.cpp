@@ -46,7 +46,7 @@ void StateStack::handleEvent(const sf::Event& event)
 	applyPendingChanges();
 }
 
-void StateStack::pushState(States::ID stateID)
+void StateStack::pushState(unsigned int stateID)
 {
     mPendingList.push_back(PendingChange(Push, stateID));
 }
@@ -66,7 +66,7 @@ bool StateStack::isEmpty() const
     return mStack.empty();
 }
 
-State::Ptr StateStack::createState(States::ID stateID)
+State::Ptr StateStack::createState(unsigned int stateID)
 {
     auto found = mFactories.find(stateID);
 	assert(found != mFactories.end());
@@ -95,7 +95,7 @@ void StateStack::applyPendingChanges()
 	mPendingList.clear();
 }
 
-StateStack::PendingChange::PendingChange(Action action, States::ID stateID)
+StateStack::PendingChange::PendingChange(Action action, unsigned int stateID)
  : action(action)
  , stateID(stateID)
 {}

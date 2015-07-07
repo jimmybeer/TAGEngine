@@ -1,7 +1,6 @@
 #pragma once
 
 #include "State.hpp"
-#include "StateIdentifiers.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/System/NonCopyable.hpp>
@@ -30,37 +29,37 @@ public:
 	explicit StateStack(State::Context context);
     
 	template <typename T>
-	void registerState(States::ID stateID);
+	void registerState(unsigned int stateID);
 	
 	void update(sf::Time dt);
 	void draw();
 	void handleEvent(const sf::Event& event);
 	
-	void pushState(States::ID stateID);
+	void pushState(unsigned int stateID);
 	void popState();
 	void clearStates();
 	
 	bool isEmpty() const;
 
 private:
-    State::Ptr createState(States::ID stateID);
+    State::Ptr createState(unsigned int stateID);
 	void applyPendingChanges();
 	
 	struct PendingChange
 	{
-	    explicit PendingChange(Action action, States::ID stateID = States::None);
+	    explicit PendingChange(Action action, unsigned int stateID = 0);
 	    Action action;
-        States::ID stateID;
+        unsigned int stateID;
 	};
 	
 	std::vector<State::Ptr> mStack;
 	std::vector<PendingChange> mPendingList;
 	State::Context mContext;
-	std::map<States::ID, std::function<State::Ptr()>> mFactories;
+	std::map<unsigned int, std::function<State::Ptr()>> mFactories;
 };
 
 template <typename T>
-void StateStack::registerState(States::ID stateID)
+void StateStack::registerState(unsigned int stateID)
 {
     mFactories[stateID] = [this] ()
 	{

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.hpp"
-#include "ResourceIdentifiers.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 

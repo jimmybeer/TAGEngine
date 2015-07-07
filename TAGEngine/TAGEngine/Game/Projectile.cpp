@@ -3,6 +3,7 @@
 #include "DataTables.hpp"
 #include "Utility.hpp"
 #include "ResourceHolder.hpp"
+#include "MyCategory.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>

@@ -5,6 +5,7 @@
 #include "CommandQueue.hpp"
 #include "SoundNode.hpp"
 #include "ResourceHolder.hpp"
+#include "MyCategory.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>

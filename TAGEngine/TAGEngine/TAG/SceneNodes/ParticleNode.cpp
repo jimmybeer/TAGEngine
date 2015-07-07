@@ -33,9 +33,8 @@ ParticleNode::ParticleNode()
  , mNeedsQuadUpdate(false)
 {}
 
-ParticleNode::ParticleNode(Particle::Type type, const TextureHolder& textures)
- : SceneNode()
- , mParticles()
+ParticleNode::ParticleNode(Particle::Type type, const TextureHolder& textures, int category)
+ : mParticles()
  , mTexture(&textures.get(Textures::Particle))
  , mTextureRects()
  , mAffectors()
@@ -85,11 +84,6 @@ void ParticleNode::clearAffectors()
 Particle::Type ParticleNode::getParticleType() const
 {
     return mType;
-}
-
-unsigned int ParticleNode::getCategory() const
-{
-    return Category::ParticleSystem;
 }
 
 void ParticleNode::clearParticles()

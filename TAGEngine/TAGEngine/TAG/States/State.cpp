@@ -20,7 +20,7 @@ State::~State()
 {
 }
 
-void State::requestStackPush(States::ID stateID)
+void State::requestStackPush(unsigned int stateID)
 {
     mStack->pushState(stateID);
 }

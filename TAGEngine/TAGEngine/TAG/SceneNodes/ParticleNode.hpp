@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SceneNode.hpp"
+#include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
 #include "Particle.hpp"
 #include "Affectors.hpp"
@@ -45,7 +46,7 @@ private:
 	
 public:
     ParticleNode();
-    ParticleNode(Particle::Type type, const TextureHolder& textures);
+    ParticleNode(Particle::Type type, const TextureHolder& textures, int category = -4);
 	
 	// Sets the used texture.
 	// Only one texture can be used at a time. If you need multiple particle representations, specify different texture
@@ -66,7 +67,6 @@ public:
 	
 	void addParticle(const Particle& particle);
 	Particle::Type getParticleType() const;
-	virtual unsigned int getCategory() const;
 	
 	void clearParticles();
 	

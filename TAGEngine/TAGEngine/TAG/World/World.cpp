@@ -5,6 +5,7 @@
 #include "ParticleNode.hpp"
 #include "ResourcePath.hpp"
 #include "SoundNode.hpp"
+#include "MyCategory.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
@@ -141,7 +142,7 @@ void World::adaptPlayerVelocity()
 	mPlayerAircraft->accelerate(0.f, mScrollSpeed);
 }
 
-bool matchCategories(SceneNode::Pair& colliders, Category::Type type1, Category::Type type2)
+bool matchCategories(SceneNode::Pair& colliders, unsigned int type1, unsigned int type2)
 {
     unsigned int category1 = colliders.first->getCategory();
 	unsigned int category2 = colliders.second->getCategory();
@@ -215,7 +216,7 @@ void World::buildScene()
     // Initialize the different layers
 	for(std::size_t i = 0; i < LayerCount; ++i)
 	{
-	    Category::Type category = (i == LowerAir) ? Category::SceneAirLayer : Category::None;
+	    unsigned int category = (i == LowerAir) ? Category::SceneAirLayer : Category::None;
 		
 		SceneNode::Ptr layer(new SceneNode(category));
 		mSceneLayers[i] = layer.get();

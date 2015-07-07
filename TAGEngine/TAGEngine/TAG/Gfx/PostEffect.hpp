@@ -9,6 +9,9 @@ namespace sf
 	class Shader;
 }
 
+#define SHADERS ""
+//"Media/Shaders/"
+
 class PostEffect : sf::NonCopyable
 {
 public:

@@ -89,7 +89,7 @@ void UniversalEmitterNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 		};
 		
 		Command command;
-		command.category = Category::ParticleSystem;
+		command.category = -4;
 		command.action = derivedAction<ParticleNode>(finder);
 		
 		commands.push(command);

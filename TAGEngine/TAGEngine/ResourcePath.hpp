@@ -35,8 +35,6 @@
 //"Media/Fonts/"
 #define TEXTURES ""
 //"Media/Textures/"
-#define SHADERS ""
-//"Media/Shaders/"
 #define MUSIC ""
 //"Media/Music/"
 #define SFX ""

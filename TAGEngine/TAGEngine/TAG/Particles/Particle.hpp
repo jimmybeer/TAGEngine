@@ -8,6 +8,7 @@ struct Particle
 {
     enum Type
 	{
+        none,
 	    Propellant,
 		Smoke,
 		ParticleCount

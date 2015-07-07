@@ -1,7 +1,7 @@
 #pragma once
 
 #include "State.hpp"
-#include "InputHandler.hpp"
+#include "MyInputHandler.hpp"
 #include "Container.hpp"
 #include "Button.hpp"
 #include "Label.hpp"
@@ -22,10 +22,10 @@ public:
 
 private:
     void updateLabels();
-    void addButtonLabel(InputHandler::Action action, float y, const std::string& text, Context context);
+    void addButtonLabel(MyInputHandler::Action action, float y, const std::string& text, Context context);
 
     sf::Sprite mBackgroundSprite;
     GUI::Container mGUIContainer;
-    std::array<GUI::Button::Ptr, InputHandler::ActionCount> mBindingButtons;
-    std::array<GUI::Label::Ptr, InputHandler::ActionCount> mBindingLabels;
+    std::array<GUI::Button::Ptr, MyInputHandler::ActionCount> mBindingButtons;
+    std::array<GUI::Label::Ptr, MyInputHandler::ActionCount> mBindingLabels;
 };

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "StateIdentifiers.hpp"
-#include "ResourceIdentifiers.hpp"
+#include "ResourceHolder.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
@@ -43,7 +42,7 @@ public:
 	virtual bool handleEvent(const sf::Event& event) = 0;
 	
 protected:
-    void requestStackPush(States::ID stateID);
+    void requestStackPush(unsigned int stateID);
     void requestStackPop();
     void requestStackClear();
 
