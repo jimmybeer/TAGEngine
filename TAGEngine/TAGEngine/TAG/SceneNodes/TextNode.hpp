@@ -2,7 +2,6 @@
 
 #include "SceneNode.hpp"
 #include "ResourceHolder.hpp"
-#include "ResourceIdentifiers.hpp"
 
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Font.hpp>

@@ -4,6 +4,7 @@
 #include <SFML/System/Vector2.hpp>
 
 #include <functional>
+#include <memory>
 
 class Particle;
 // Create Affector objects and add to the particle node you wish to be affected. 
@@ -22,7 +23,8 @@ class Particle;
 class Affector
 {
 public:
-	virtual void operator() (Particle& particle, sf::Time dt) = 0;
+    typedef std::unique_ptr<Affector> Ptr;
+	virtual void affect(Particle& particle, sf::Time dt) = 0;
 };
 
 // Applies a translational acceleration to particles over time.
@@ -32,7 +34,7 @@ class ForceAffector : public Affector
 public:
     explicit ForceAffector(sf::Vector2f acceleration);
 	
-	void operator() (Particle& particle, sf::Time dt);
+	void affect(Particle& particle, sf::Time dt);
 	
 	void setAcceleration(sf::Vector2f acceleration);
 	sf::Vector2f getAcceleration() const;
@@ -48,7 +50,7 @@ class TorqueAffector : public Affector
 public:
     explicit TorqueAffector(float angularAcceleration);
 	
-	void operator() (Particle& particle, sf::Time dt);
+	void affect(Particle& particle, sf::Time dt);
 	
 	void setAngularAcceleration(float angularAcceleration);
 	float getAngularAcceleration() const;
@@ -63,13 +65,21 @@ class ScaleAffector : public Affector
 public:
     explicit ScaleAffector(sf::Vector2f scaleFactor);
 	
-	void operator() (Particle& particle, sf::Time dt);
+	void affect(Particle& particle, sf::Time dt);
 	
 	//  Sets the factor by which particles are scaled every second.
 	void setScaleFactor(sf::Vector2f scaleFactor);
 	sf::Vector2f getScaleFactor() const;
 private:
     sf::Vector2f mScaleFactor;
+};
+
+class FadeAffector : public Affector
+{
+public:
+    explicit FadeAffector();
+	
+	void affect(Particle& particle, sf::Time dt);
 };
 
 // Affector that animates particles using a function.
@@ -83,7 +93,7 @@ public:
 	// corresponds to getElapsedRatio(particle), the delta time of operator() is ignored.
 	explicit AnimationAffector(std::function<void(Particle&, float)> particleAnimation);
 
-	void operator() (Particle& particle, sf::Time dt);
+	void affect(Particle& particle, sf::Time dt);
 	
 private:
     std::function<void(Particle&, float)> mAnimation;

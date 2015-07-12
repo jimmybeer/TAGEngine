@@ -31,7 +31,7 @@ class ParticleNode;
 class UniversalEmitterNode : public SceneNode
 {
 public:
-    explicit UniversalEmitterNode(Particle::Type type);
+    explicit UniversalEmitterNode(unsigned int type);
 	void setTotalLifetime(sf::Time time);
 	void setEnabled(bool enable);
 	bool isEnabled() const;
@@ -83,7 +83,7 @@ private:
     sf::Time mEmissionInterval;
 	
 	sf::Time mAccumulatedTime;
-	Particle::Type mType;
+	unsigned int mType;
 	ParticleNode* mParticleSystem;
 	bool mEnabled;
 	bool mTimeBound;

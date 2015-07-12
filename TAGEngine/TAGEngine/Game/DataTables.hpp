@@ -47,14 +47,14 @@ struct PickupData
 	sf::IntRect textureRect;
 };
 
-struct ParticleData
+/*struct ParticleData
 {
     sf::Color color;
 	sf::Time lifeTime;
     sf::Vector2f scale;
-};
+};*/
 
 std::vector<AircraftData> initialiseAircraftData();
 std::vector<ProjectileData> initialiseProjectileData();
 std::vector<PickupData> initialisePickupData();
-std::vector<ParticleData> initialiseParticleData();
+//void initialiseParticleData(std::vector<ParticleData>* Table);

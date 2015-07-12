@@ -1,6 +1,4 @@
- #include "ParticleNode.hpp"
-#include "DataTables.hpp"
-#include "ResourceHolder.hpp"
+#include "ParticleNode.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -10,9 +8,7 @@
 #include <iostream>
 
 namespace
-{
-    const std::vector<ParticleData> Table = initialiseParticleData();
-	
+{	
 	sf::IntRect getFullRect(const sf::Texture* texture)
 	{
 	    return sf::IntRect(0, 0, texture->getSize().x, texture->getSize().y);
@@ -26,16 +22,16 @@ ParticleNode::ParticleNode()
  , mTextureRects()
  , mAffectors()
  , mExpiringAffectors(0)
- , mType(Particle::Propellant)
+ , mType(0)
  , mVertexArray(sf::Quads)
  , mNeedsVertexUpdate(false)
  , mQuads()
  , mNeedsQuadUpdate(false)
 {}
 
-ParticleNode::ParticleNode(Particle::Type type, const TextureHolder& textures, int category)
+ParticleNode::ParticleNode(unsigned int type, const sf::Texture* texture)
  : mParticles()
- , mTexture(&textures.get(Textures::Particle))
+ , mTexture(texture)
  , mTextureRects()
  , mAffectors()
  , mExpiringAffectors(0)
@@ -46,9 +42,9 @@ ParticleNode::ParticleNode(Particle::Type type, const TextureHolder& textures, i
  , mNeedsQuadUpdate(true)
 {}
 	
-void ParticleNode::setTexture(const sf::Texture& texture)
+void ParticleNode::setTexture(const sf::Texture* texture)
 {
-    mTexture = &texture;
+    mTexture = texture;
 	mNeedsQuadUpdate = true;
 }
 	
@@ -65,15 +61,15 @@ void ParticleNode::addParticle(const Particle& particle)
 	mParticles.push_back(particle);
 }
 
-void ParticleNode::addAffector(Affector& affectorRef, sf::Time timeUntilRemoval)
+void ParticleNode::addAffector(Affector::Ptr affector, sf::Time timeUntilRemoval)
 {
-    AffectorRef ref(affectorRef, timeUntilRemoval);
-	mAffectors.push_back(ref);
+    /*AffectorRef ref(std::move(affector), timeUntilRemoval);
+    mAffectors.emplace_back(std::move(ref));
 	
 	if(timeUntilRemoval > sf::Time::Zero)
 	{
 	 	mExpiringAffectors++;
-	}
+	}*/
 }
 
 void ParticleNode::clearAffectors()
@@ -81,9 +77,13 @@ void ParticleNode::clearAffectors()
     mAffectors.clear();
 }
 
-Particle::Type ParticleNode::getParticleType() const
+unsigned int ParticleNode::getParticleType() const
 {
     return mType;
+}
+unsigned int ParticleNode::getCategory() const
+{
+    return Category::ParticleSystem;
 }
 
 void ParticleNode::clearParticles()
@@ -103,13 +103,17 @@ void ParticleNode::updateCurrent(sf::Time dt, CommandQueue&)
 	for(Particle& particle : mParticles)
 	{
 	    particle.lifetime += dt;
+		if(particle.lifetime > particle.totalLife)
+		{
+		    particle.lifetime = particle.totalLife;
+		}
 		
 		particle.position += dt.asSeconds() * particle.velocity;
 		particle.rotation += dt.asSeconds() * particle.rotationSpeed;
 		
-		for(AffectorRef aRef : mAffectors)
+        for(AffectorRef::Ptr& aRef : mAffectors)
 		{
-		    aRef.affector(particle, dt);
+            aRef->affector->affect(particle, dt);
 		}
 	}
 	
@@ -119,8 +123,8 @@ void ParticleNode::updateCurrent(sf::Time dt, CommandQueue&)
 	    mAffectors.erase(
 	        std::remove_if(mAffectors.begin(),
 		                   mAffectors.end(),
-		    			   [&](AffectorRef& ref) {
-                               if(ref.timeUntilRemoval != sf::Time::Zero && (ref.timeUntilRemoval -= dt) <= sf::Time::Zero)
+		    			   [&](AffectorRef::Ptr& ref) {
+                               if(ref->timeUntilRemoval != sf::Time::Zero && (ref->timeUntilRemoval -= dt) <= sf::Time::Zero)
 							    {
 							       mExpiringAffectors--;
 								   return true;

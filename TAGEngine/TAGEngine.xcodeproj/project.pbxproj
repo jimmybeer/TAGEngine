@@ -38,8 +38,7 @@
 		FF1C17731B4B03C100891BEE /* PauseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF1C17681B4B03C100891BEE /* PauseState.cpp */; };
 		FF1C17741B4B03C100891BEE /* SettingsStates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF1C176A1B4B03C100891BEE /* SettingsStates.cpp */; };
 		FF1C17751B4B03C100891BEE /* TitleState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF1C176D1B4B03C100891BEE /* TitleState.cpp */; };
-		FF1C17781B4B18F000891BEE /* AircraftSoundPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF1C174F1B4AF87400891BEE /* AircraftSoundPlayer.cpp */; };
-		FF1C17791B4B1A7F00891BEE /* AircraftMusicPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF1C174D1B4AF87400891BEE /* AircraftMusicPlayer.cpp */; };
+		FF3AD7891B51CE7100EE5592 /* MyApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3AD7871B51CE7100EE5592 /* MyApplication.cpp */; };
 		FF3E06921B2F509B008F1A1C /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06911B2F509B008F1A1C /* ResourcePath.mm */; };
 		FF3E06951B2F509B008F1A1C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06941B2F509B008F1A1C /* main.cpp */; };
 		FF3E06DC1B2F5175008F1A1C /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06A51B2F5175008F1A1C /* Application.cpp */; };
@@ -59,7 +58,6 @@
 		FF3E06F01B2F5175008F1A1C /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06D61B2F5175008F1A1C /* Utility.cpp */; };
 		FF3E06F11B2F5175008F1A1C /* Utility.inl in Resources */ = {isa = PBXBuildFile; fileRef = FF3E06D81B2F5175008F1A1C /* Utility.inl */; };
 		FF3E06F21B2F5175008F1A1C /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF3E06DA1B2F5175008F1A1C /* World.cpp */; };
-		FF4DAF181B4C7B340033BFF4 /* MyInputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF4DAF161B4C7B340033BFF4 /* MyInputHandler.cpp */; };
 		FF9D6FAE1B34BAB600A995F0 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FA81B34BAB600A995F0 /* Animation.cpp */; };
 		FF9D6FAF1B34BAB600A995F0 /* BloomEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FAA1B34BAB600A995F0 /* BloomEffect.cpp */; };
 		FF9D6FB01B34BAB600A995F0 /* PostEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF9D6FAC1B34BAB600A995F0 /* PostEffect.cpp */; };
@@ -88,6 +86,7 @@
 		FFAC74771B3B4AC00061C374 /* Explosion1.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746E1B3B4AC00061C374 /* Explosion1.wav */; };
 		FFAC74781B3B4AC00061C374 /* Explosion2.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC746F1B3B4AC00061C374 /* Explosion2.wav */; };
 		FFAC74791B3B4AC00061C374 /* LaunchMissile.wav in Resources */ = {isa = PBXBuildFile; fileRef = FFAC74701B3B4AC00061C374 /* LaunchMissile.wav */; };
+		FFAE01151B524C26002F7085 /* GUISettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFAE01141B524C26002F7085 /* GUISettings.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,10 +132,6 @@
 		FF1493111B448D0E003A1173 /* FrameAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FrameAnimation.hpp; sourceTree = "<group>"; };
 		FF1C174B1B4AF87400891BEE /* Aircraft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Aircraft.cpp; sourceTree = "<group>"; };
 		FF1C174C1B4AF87400891BEE /* Aircraft.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Aircraft.hpp; sourceTree = "<group>"; };
-		FF1C174D1B4AF87400891BEE /* AircraftMusicPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AircraftMusicPlayer.cpp; sourceTree = "<group>"; };
-		FF1C174E1B4AF87400891BEE /* AircraftMusicPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AircraftMusicPlayer.hpp; sourceTree = "<group>"; };
-		FF1C174F1B4AF87400891BEE /* AircraftSoundPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AircraftSoundPlayer.cpp; sourceTree = "<group>"; };
-		FF1C17501B4AF87400891BEE /* AircraftSoundPlayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AircraftSoundPlayer.hpp; sourceTree = "<group>"; };
 		FF1C17511B4AF87400891BEE /* DataTables.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataTables.cpp; sourceTree = "<group>"; };
 		FF1C17521B4AF87400891BEE /* DataTables.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DataTables.hpp; sourceTree = "<group>"; };
 		FF1C17531B4AF87400891BEE /* Pickup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pickup.cpp; sourceTree = "<group>"; };
@@ -159,6 +154,10 @@
 		FF1C176D1B4B03C100891BEE /* TitleState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TitleState.cpp; sourceTree = "<group>"; };
 		FF1C176E1B4B03C100891BEE /* TitleState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TitleState.hpp; sourceTree = "<group>"; };
 		FF1C17771B4B046700891BEE /* ResourceIdentifiers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourceIdentifiers.hpp; sourceTree = "<group>"; };
+		FF3AD7861B51CE5A00EE5592 /* Actions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Actions.hpp; sourceTree = "<group>"; };
+		FF3AD7871B51CE7100EE5592 /* MyApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyApplication.cpp; sourceTree = "<group>"; };
+		FF3AD7881B51CE7100EE5592 /* MyApplication.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MyApplication.hpp; sourceTree = "<group>"; };
+		FF3AD78A1B51CEFE00EE5592 /* GUISettings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUISettings.hpp; sourceTree = "<group>"; };
 		FF3E068C1B2F509B008F1A1C /* TAGEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAGEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF3E06901B2F509B008F1A1C /* TAGEngine-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TAGEngine-Info.plist"; sourceTree = "<group>"; };
 		FF3E06911B2F509B008F1A1C /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -201,6 +200,7 @@
 		FF4DAF141B4C79730033BFF4 /* Category.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Category.hpp; sourceTree = "<group>"; };
 		FF4DAF161B4C7B340033BFF4 /* MyInputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyInputHandler.cpp; sourceTree = "<group>"; };
 		FF4DAF171B4C7B340033BFF4 /* MyInputHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MyInputHandler.hpp; sourceTree = "<group>"; };
+		FF644DFF1B4DBC9800826FA0 /* Defaults.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Defaults.hpp; sourceTree = "<group>"; };
 		FF9D6FA81B34BAB600A995F0 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		FF9D6FA91B34BAB600A995F0 /* Animation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Animation.hpp; sourceTree = "<group>"; };
 		FF9D6FAA1B34BAB600A995F0 /* BloomEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BloomEffect.cpp; sourceTree = "<group>"; };
@@ -235,6 +235,7 @@
 		FFAC746E1B3B4AC00061C374 /* Explosion1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion1.wav; sourceTree = "<group>"; };
 		FFAC746F1B3B4AC00061C374 /* Explosion2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion2.wav; sourceTree = "<group>"; };
 		FFAC74701B3B4AC00061C374 /* LaunchMissile.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LaunchMissile.wav; sourceTree = "<group>"; };
+		FFAE01141B524C26002F7085 /* GUISettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUISettings.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,11 +279,13 @@
 		FF1C174A1B4AF87400891BEE /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				FF3AD7871B51CE7100EE5592 /* MyApplication.cpp */,
+				FF3AD7881B51CE7100EE5592 /* MyApplication.hpp */,
+				FF3AD7861B51CE5A00EE5592 /* Actions.hpp */,
 				FF4DAF151B4C7B1B0033BFF4 /* IO */,
 				FF4DAF131B4C79490033BFF4 /* MyCategory.hpp */,
 				FF1C17771B4B046700891BEE /* ResourceIdentifiers.hpp */,
 				FF1C17761B4B03DD00891BEE /* States */,
-				FF1C175F1B4B034800891BEE /* Audio */,
 				FF1C175E1B4B033200891BEE /* Entities */,
 			);
 			path = Game;
@@ -301,17 +304,6 @@
 				FF1C174C1B4AF87400891BEE /* Aircraft.hpp */,
 			);
 			name = Entities;
-			sourceTree = "<group>";
-		};
-		FF1C175F1B4B034800891BEE /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-				FF1C174D1B4AF87400891BEE /* AircraftMusicPlayer.cpp */,
-				FF1C174E1B4AF87400891BEE /* AircraftMusicPlayer.hpp */,
-				FF1C174F1B4AF87400891BEE /* AircraftSoundPlayer.cpp */,
-				FF1C17501B4AF87400891BEE /* AircraftSoundPlayer.hpp */,
-			);
-			name = Audio;
 			sourceTree = "<group>";
 		};
 		FF1C17761B4B03DD00891BEE /* States */ = {
@@ -385,6 +377,7 @@
 		FF3E06A41B2F5175008F1A1C /* TAG */ = {
 			isa = PBXGroup;
 			children = (
+				FF644DFF1B4DBC9800826FA0 /* Defaults.hpp */,
 				FF1492DC1B4468EE003A1173 /* Math */,
 				FFAC745F1B3B4A1E0061C374 /* Audio */,
 				FF9D6FB11B34BADC00A995F0 /* Particles */,
@@ -422,6 +415,8 @@
 		FF3E06AC1B2F5175008F1A1C /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				FFAE01141B524C26002F7085 /* GUISettings.cpp */,
+				FF3AD78A1B51CEFE00EE5592 /* GUISettings.hpp */,
 				FF3E06AD1B2F5175008F1A1C /* Button.cpp */,
 				FF3E06AE1B2F5175008F1A1C /* Button.hpp */,
 				FF3E06AF1B2F5175008F1A1C /* Component.cpp */,
@@ -756,9 +751,8 @@
 				FF1492EB1B4468EE003A1173 /* Trigonometry.cpp in Sources */,
 				FF1492E81B4468EE003A1173 /* Distributions.cpp in Sources */,
 				FF3E06E51B2F5175008F1A1C /* SceneNode.cpp in Sources */,
+				FFAE01151B524C26002F7085 /* GUISettings.cpp in Sources */,
 				FF3E06951B2F509B008F1A1C /* main.cpp in Sources */,
-				FF4DAF181B4C7B340033BFF4 /* MyInputHandler.cpp in Sources */,
-				FF1C17791B4B1A7F00891BEE /* AircraftMusicPlayer.cpp in Sources */,
 				FF9D6FAF1B34BAB600A995F0 /* BloomEffect.cpp in Sources */,
 				FFAC74641B3B4A1E0061C374 /* MusicPlayer.cpp in Sources */,
 				FF1C175B1B4AF87400891BEE /* Pickup.cpp in Sources */,
@@ -767,6 +761,7 @@
 				FF1C175A1B4AF87400891BEE /* DataTables.cpp in Sources */,
 				FF1C175C1B4AF87400891BEE /* Projectile.cpp in Sources */,
 				FF3E06EF1B2F5175008F1A1C /* ParallelTask.cpp in Sources */,
+				FF3AD7891B51CE7100EE5592 /* MyApplication.cpp in Sources */,
 				FF3E06E61B2F5175008F1A1C /* SpriteNode.cpp in Sources */,
 				FF14930E1B448CC6003A1173 /* UniformAccess.cpp in Sources */,
 				FF3E06E31B2F5175008F1A1C /* InputHandler.cpp in Sources */,
@@ -780,7 +775,6 @@
 				FF1492F71B447260003A1173 /* ParticleNode.cpp in Sources */,
 				FF1492EA1B4468EE003A1173 /* Random.cpp in Sources */,
 				FF1492F11B4471FA003A1173 /* Particle.cpp in Sources */,
-				FF1C17781B4B18F000891BEE /* AircraftSoundPlayer.cpp in Sources */,
 				FF1493051B448CB4003A1173 /* ColorAnimation.cpp in Sources */,
 				FFAC745E1B3B49250061C374 /* SoundNode.cpp in Sources */,
 				FF1C17711B4B03C100891BEE /* LoadingState.cpp in Sources */,

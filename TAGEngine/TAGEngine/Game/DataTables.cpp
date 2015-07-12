@@ -88,9 +88,9 @@ std::vector<PickupData> initialisePickupData()
 	return data;
 }
 
-std::vector<ParticleData> initialiseParticleData()
+/*void initialiseParticleData(std::vector<ParticleData>* Table)
 {
-    std::vector<ParticleData> data(Particle::ParticleCount);
+    //std::vector<ParticleData> data(Particle::ParticleCount);
 	
 	data[Particle::Propellant].color = sf::Color(255, 255, 50);
     data[Particle::Propellant].lifeTime = sf::seconds(0.6f);
@@ -101,4 +101,4 @@ std::vector<ParticleData> initialiseParticleData()
     data[Particle::Smoke].scale = sf::Vector2f(1.f, 1.f);
 	
 	return data;
-}
+}*/

@@ -8,7 +8,7 @@ ForceAffector::ForceAffector(sf::Vector2f acceleration)
  : mAcceleration(acceleration)
 {}
 
-void ForceAffector::operator() (Particle& particle, sf::Time dt)
+void ForceAffector::affect(Particle& particle, sf::Time dt)
 {
     particle.velocity += dt.asSeconds() * mAcceleration;
 }
@@ -28,7 +28,7 @@ TorqueAffector::TorqueAffector(float angularAcceleration)
  : mAngularAcceleration(angularAcceleration)
 {}
 
-void TorqueAffector::operator() (Particle& particle, sf::Time dt)
+void TorqueAffector::affect(Particle& particle, sf::Time dt)
 {
     particle.rotationSpeed += dt.asSeconds() * mAngularAcceleration;
 }
@@ -48,7 +48,7 @@ ScaleAffector::ScaleAffector(sf::Vector2f scaleFactor)
  : mScaleFactor(scaleFactor)
 {}
 
-void ScaleAffector::operator() (Particle& particle, sf::Time dt)
+void ScaleAffector::affect(Particle& particle, sf::Time dt)
 {
     particle.scale += dt.asSeconds() * mScaleFactor;
 }
@@ -63,12 +63,19 @@ sf::Vector2f ScaleAffector::getScaleFactor() const
     return mScaleFactor;
 }
 
+FadeAffector::FadeAffector()
+{}
+	
+void FadeAffector::affect(Particle& particle, sf::Time dt)
+{
+    particle.color.a = static_cast<sf::Uint8>(255 * std::fmax(particle.getRemainingRatio(), 0.f));
+}
 
 AnimationAffector::AnimationAffector(std::function<void(Particle&, float)> particleAnimation)
  : mAnimation(std::move(particleAnimation))
 {}
 
-void AnimationAffector::operator() (Particle& particle, sf::Time)
+void AnimationAffector::affect(Particle& particle, sf::Time)
 {
     mAnimation(particle, particle.getElapsedRatio());
 }

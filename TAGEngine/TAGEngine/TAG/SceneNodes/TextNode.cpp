@@ -1,11 +1,12 @@
 #include "TextNode.hpp"
 #include "Utility.hpp"
+#include "Defaults.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 
 TextNode::TextNode(const FontHolder& fonts, const std::string& text)
 {
-    mText.setFont(fonts.get(Fonts::Main));
+    mText.setFont(fonts.get(TagDefaults::Fonts::Main));
 	mText.setCharacterSize(20);
 	setString(text);
 }

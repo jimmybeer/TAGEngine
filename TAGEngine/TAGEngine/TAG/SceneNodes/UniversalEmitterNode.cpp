@@ -3,7 +3,7 @@
 #include "Command.hpp"
 #include "CommandQueue.hpp"
  
-UniversalEmitterNode::UniversalEmitterNode(Particle::Type type)
+UniversalEmitterNode::UniversalEmitterNode(unsigned int type)
 : SceneNode()
 , mEnabled(true)
 , mEmissionRate(1.f)
@@ -89,7 +89,7 @@ void UniversalEmitterNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 		};
 		
 		Command command;
-		command.category = -4;
+		command.category = Category::ParticleSystem;
 		command.action = derivedAction<ParticleNode>(finder);
 		
 		commands.push(command);

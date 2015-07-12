@@ -2,7 +2,7 @@
 
 #include "State.hpp"
 #include "World.hpp"
-#include "MyInputHandler.hpp"
+#include "InputHandler.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
@@ -18,5 +18,5 @@ public:
 	
 private:
     World mWorld;
-	MyInputHandler& mInputHandler;
+	InputHandler& mInputHandler;
 };

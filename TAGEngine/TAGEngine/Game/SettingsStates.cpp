@@ -20,7 +20,7 @@ SettingsState::SettingsState(StateStack& stack, Context context)
 
     updateLabels();
 
-    auto backButton = std::make_shared<GUI::Button>(context);    
+    auto backButton = std::make_shared<GUI::Button>();//context);
     backButton->setPosition(80.f, 375.f);
     backButton->setText("Back");
     backButton->setCallback(std::bind(&SettingsState::requestStackPop, this));
@@ -86,12 +86,12 @@ void SettingsState::updateLabels()
 
 void SettingsState::addButtonLabel(MyInputHandler::Action action, float y, const std::string& text, Context context)
 {
-    mBindingButtons[action] = std::make_shared<GUI::Button>(context);
+    mBindingButtons[action] = std::make_shared<GUI::Button>();//context, Textures::Buttons);
     mBindingButtons[action]->setPosition(80.f, y);
     mBindingButtons[action]->setText(text);
     mBindingButtons[action]->setToggle(true);
 
-    mBindingLabels[action] = std::make_shared<GUI::Label>("", *context.fonts);
+    mBindingLabels[action] = std::make_shared<GUI::Label>("");//, *context.fonts);
     mBindingLabels[action]->setPosition(300.f, y + 15.f);
 
     mGUIContainer.pack(mBindingButtons[action]);

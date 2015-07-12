@@ -7,9 +7,9 @@
 GameState::GameState(StateStack& stack, Context context)
  : State(stack, context)
  , mWorld(*context.window, *context.fonts, *context.sounds)
- , mInputHandler(dynamic_cast<MyInputHandler&>(*context.inputHandler))
+ , mInputHandler(*context.inputHandler)
 {
-    mInputHandler.setMissionStatus(MyInputHandler::MissionRunning);
+    //mInputHandler.setMissionStatus(MyInputHandler::MissionRunning);
 	
 	// play theme
 	context.music->play(Music::MissionTheme);
@@ -26,12 +26,12 @@ bool GameState::update(sf::Time dt)
 	
 	if(!mWorld.hasAlivePlayer())
 	{
-	    mInputHandler.setMissionStatus(MyInputHandler::MissionFailure);
+	    //mInputHandler.setMissionStatus(MyInputHandler::MissionFailure);
 		requestStackPush(States::GameOver);
 	}
 	else if(mWorld.hasPlayerReachedEnd())
 	{
-	    mInputHandler.setMissionStatus(MyInputHandler::MissionSuccess);
+	    //mInputHandler.setMissionStatus(MyInputHandler::MissionSuccess);
 		requestStackPush(States::GameOver);
 	}
 	    

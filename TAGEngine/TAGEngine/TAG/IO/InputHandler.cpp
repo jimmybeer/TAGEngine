@@ -55,6 +55,14 @@ void InputHandler::assignKey(unsigned int action, sf::Keyboard::Key key)
     mKeyBinding[key] = action;
 }
 
+void InputHandler::assignAction(unsigned int action, const FuncType& callback, unsigned int category, bool realtimeAction)
+{
+    mActionBinding[action].action = callback;
+    mActionBinding[action].category = category;
+    
+    mRealtimeAction[action] = realtimeAction;
+}
+
 sf::Keyboard::Key InputHandler::getAssignedKey(unsigned int action) const
 {
     for(auto& pair: mKeyBinding)
@@ -73,5 +81,5 @@ void InputHandler::initialiseActions()
 
 bool InputHandler::isRealTimeAction(unsigned int action)
 {
-    return false;
+    return mRealtimeAction[action];
 }

@@ -14,7 +14,7 @@
 // method resourcePath() from ResourcePath.hpp
 //
 
-#include "Application.hpp"
+#include "MyApplication.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <SFML/Config.hpp>
@@ -24,7 +24,7 @@ int main(int, char const**)
     std::cout << "SFML Verision - " << SFML_VERSION_MAJOR << "." << SFML_VERSION_MINOR << "-" << SFML_VERSION_PATCH << "\n";
     
     try {
-        Application app(640, 480);
+        MyApplication app(640, 480);
         app.run();
     } catch (std::exception& e) {
         std::cout << "\nEXCEPTION: " << e.what() << std::endl;

@@ -2,14 +2,18 @@
 #include "ParticleNode.hpp"
 #include "CommandQueue.hpp"
 #include "Command.hpp"
-#include "DataTables.hpp"
 
-namespace
+std::vector<EmitterNode::ParticleData> EmitterNode::Table;
+
+void EmitterNode::addParticleData(unsigned int id, sf::Color color, sf::Time lifeTime, sf::Vector2f scale, unsigned int textureIndex)
 {
-    const std::vector<ParticleData> Table = initialiseParticleData();
+    Table[id].color = color;
+    Table[id].lifeTime = lifeTime;
+    Table[id].scale = scale;
+    Table[id].textureIndex = textureIndex;
 }
 
-EmitterNode::EmitterNode(Particle::Type type)
+EmitterNode::EmitterNode(unsigned int type)
  : SceneNode()
  , mEnabled(true)
  , mEmissionRate(30.f)
@@ -72,26 +76,29 @@ void EmitterNode::updateCurrent(sf::Time dt, CommandQueue& commands)
 	}
 	else
 	{
-	    // Find particle node with the same type as emitter node
-		auto finder = [this] (ParticleNode& container, sf::Time)
-		{
-		    if(container.getParticleType() == mType)
-			{
-			    mParticleSystem = &container;
-			}
-		};
+        if(mType < Table.size())
+        {
+	        // Find particle node with the same type as emitter node
+		    auto finder = [this] (ParticleNode& container, sf::Time)
+		    {
+		        if(container.getParticleType() == mType)
+			    {
+			        mParticleSystem = &container;
+			    }
+		    };
 		
-		Command command;
-		command.category = -4;
-		command.action = derivedAction<ParticleNode>(finder);
+		    Command command;
+		    command.category = Category::ParticleSystem;
+            command.action = derivedAction<ParticleNode>(finder);
 		
-		commands.push(command);
+		    commands.push(command);
+        }
 	}
 }
 
 void EmitterNode::emitParticles(sf::Time dt)
-{	
-	mAccumulatedTime += dt;
+{
+    mAccumulatedTime += dt;
 	
 	while(mAccumulatedTime > mEmissionInterval)
 	{
@@ -99,9 +106,9 @@ void EmitterNode::emitParticles(sf::Time dt)
 		
 	    Particle particle;
 	    particle.position = getWorldPosition();
-	    particle.color = Table[mType].color;
+        particle.color = Table[mType].color;
 	    particle.lifetime = sf::Time::Zero;
-	    particle.totalLife = Table[mType].lifeTime;
+        particle.totalLife = Table[mType].lifeTime;
         particle.scale = Table[mType].scale;
 		particle.textureIndex = 0;
 		
