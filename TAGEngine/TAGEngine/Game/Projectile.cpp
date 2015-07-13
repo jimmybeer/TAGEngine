@@ -1,5 +1,5 @@
 #include "Projectile.hpp"
-#include "EmitterNode.hpp"
+#include "UniversalEmitterNode.hpp"
 #include "DataTables.hpp"
 #include "Utility.hpp"
 #include "ResourceHolder.hpp"
@@ -26,12 +26,20 @@ Projectile::Projectile(Type type, const TextureHolder& textures)
 	
 	if(isGuided())
 	{
-	    std::unique_ptr<EmitterNode> smoke(new EmitterNode(Particle::Smoke));
+	    std::unique_ptr<UniversalEmitterNode> smoke(new UniversalEmitterNode(Particle::Smoke));
 		smoke->setPosition(0.f, getBoundingRect().height / 2.f);
+        smoke->setEmissionRate(60.f);
+        smoke->setParticleLifetime(sf::seconds(1.5f));
+        smoke->setParticleColor(sf::Color(50, 50, 50));
+        smoke->setParticleScale(sf::Vector2f(1.f, 1.f));
 		attachChild(std::move(smoke));
 		
-		std::unique_ptr<EmitterNode> propellant(new EmitterNode(Particle::Propellant));
+		std::unique_ptr<UniversalEmitterNode> propellant(new UniversalEmitterNode(Particle::Propellant));
 		propellant->setPosition(0.f, getBoundingRect().height / 2.f);
+        propellant->setEmissionRate(60.f);
+        propellant->setParticleLifetime(sf::seconds(0.6f));
+        propellant->setParticleColor(sf::Color(255, 255, 50));
+        propellant->setParticleScale(sf::Vector2f(0.75f, 0.75f));
 		attachChild(std::move(propellant));
 	}
 }

@@ -4,6 +4,7 @@
 #include "TextNode.hpp"
 #include "EmitterNode.hpp"
 #include "ParticleNode.hpp"
+#include "Affectors.hpp"
 #include "ResourcePath.hpp"
 #include "SoundNode.hpp"
 #include "MyCategory.hpp"
@@ -247,24 +248,17 @@ void World::buildScene()
     EmitterNode::Table.resize(Particle::ParticleCount);
     EmitterNode::addParticleData(Particle::Propellant, sf::Color(255, 255, 50), sf::seconds(0.6f), sf::Vector2f(0.75f, 0.75f));
     EmitterNode::addParticleData(Particle::Smoke, sf::Color(50, 50, 50), sf::seconds(1.f), sf::Vector2f(1.f, 1.f));
-     /*EmitterNode::Table& table = getEmitterParticleTable();
-     
-     table.resize(2);
-     
-     table[Particle::Propellant].color = sf::Color(255, 255, 50);
-     table[Particle::Propellant].lifeTime = sf::seconds(0.6f);
-     table[Particle::Propellant].scale = sf::Vector2f(0.75f, 0.75f);
-     
-     table[Particle::Smoke].color = sf::Color(50, 50, 50);
-     table[Particle::Smoke].lifeTime = sf::seconds(1.f);
-     table[Particle::Smoke].scale = sf::Vector2f(1.f, 1.f);*/
     
 	// Add particle node to the scene
 	std::unique_ptr<ParticleNode> smokeNode(new ParticleNode(Particle::Smoke, &mTextures.get(Textures::Particle)));
-	mSceneLayers[LowerAir]->attachChild(std::move(smokeNode));
+    Affector::Ptr fa1(new FadeAffector);
+    smokeNode->addAffector(std::move(fa1));
+    mSceneLayers[LowerAir]->attachChild(std::move(smokeNode));
 	
 	// Add propellant
-	std::unique_ptr<ParticleNode> propellantNode(new ParticleNode(Particle::Propellant, &mTextures.get(Textures::Particle)));
+    std::unique_ptr<ParticleNode> propellantNode(new ParticleNode(Particle::Propellant, &mTextures.get(Textures::Particle)));
+    Affector::Ptr fa3(new FadeAffector);
+    propellantNode->addAffector(std::move(fa3));
 	mSceneLayers[LowerAir]->attachChild(std::move(propellantNode));
 	
 	// Add sound effect node

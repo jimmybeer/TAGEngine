@@ -23,12 +23,12 @@ private:
 	{
 	    typedef std::unique_ptr<AffectorRef> Ptr;
 		
-	    AffectorRef(Affector::Ptr affector, sf::Time timeUntilRemoval)
+        AffectorRef(Affector::Ptr affector, sf::Time timeUntilRemoval)
 		 : affector(std::move(affector))
 		 , timeUntilRemoval(timeUntilRemoval)
 		{}
 		
-		Affector::Ptr affector;
+        std::unique_ptr<Affector> affector;
 		sf::Time timeUntilRemoval;
 	};
 	
@@ -79,7 +79,7 @@ private:
 	const sf::Texture* mTexture;
 	std::vector<sf::IntRect> mTextureRects;	
 	
-	std::vector<AffectorRef::Ptr> mAffectors;
+    std::vector<AffectorRef::Ptr> mAffectors;
 	int mExpiringAffectors;
 	
 	mutable sf::VertexArray mVertexArray;

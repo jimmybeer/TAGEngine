@@ -63,13 +63,14 @@ void ParticleNode::addParticle(const Particle& particle)
 
 void ParticleNode::addAffector(Affector::Ptr affector, sf::Time timeUntilRemoval)
 {
-    /*AffectorRef ref(std::move(affector), timeUntilRemoval);
-    mAffectors.emplace_back(std::move(ref));
+    AffectorRef::Ptr ar(new AffectorRef(std::move(affector), timeUntilRemoval));
+    
+    mAffectors.push_back(std::move(ar));
 	
 	if(timeUntilRemoval > sf::Time::Zero)
 	{
 	 	mExpiringAffectors++;
-	}*/
+	}
 }
 
 void ParticleNode::clearAffectors()
