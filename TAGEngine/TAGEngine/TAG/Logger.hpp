@@ -9,22 +9,22 @@
 #include <fstream>
 
 // To enable logging define one of these in your preprocessor directives
-#ifdef LOG_OUTPUT_ALL
-#define LOG(m, t) Logger::Log(m, t, Logger::All)
+//#ifdef LOG_OUTPUT_ALL
+//#define LOG(m, t) Logger::Log(m, t, Logger::All)
 
-#elif defined LOG_OUTPUT_CONSOLE
-#define LOG(m, t) Logger::Log(m, t, Logger::Console)
+//#elif defined LOG_OUTPUT_CONSOLE
+#define LOG(m, t) Logger::Log(m, t, Logger::Output::Console)
 
-#elif defined LOG_OUTPUT_FILE
-#define LOG(m, t) Logger::Log(m, t, Logger::File)
+//#elif defined LOG_OUTPUT_FILE
+//#define LOG(m, t) Logger::Log(m, t, Logger::File)
 
-#else
-#define LOG(m, t)
-#endif
+//#else
+//#define LOG(m, t)
+//#endif
 
-#define LOG_INF(m) LOG(m, LOGGER::Type::Info)
-#define LOG_WRN(m) LOG(m, LOGGER::Type::Warning)
-#define LOG_ERR(m) LOG(m, LOGGER::Type::Error)
+#define LOG_INF(m) LOG(m, Logger::Type::Info)
+#define LOG_WRN(m) LOG(m, Logger::Type::Warning)
+#define LOG_ERR(m) LOG(m, Logger::Type::Error)
 
 #ifdef _MSC_VER
 #include <Windows.h>

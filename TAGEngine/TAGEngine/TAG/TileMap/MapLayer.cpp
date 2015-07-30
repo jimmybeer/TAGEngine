@@ -155,11 +155,11 @@ void MapLayer::draw(sf::RenderTarget& rt, sf::RenderStates states) const
         rt.draw(*ls.second, states);
     }
     
-    /*if(type == tmx::ImageLayer)
+    if(type == tmx::ImageLayer)
     {
         for(const auto& tile : tiles)
         {
             rt.draw(tile.sprite, tile.renderStates);
         }
-    }*/
+    }
 }

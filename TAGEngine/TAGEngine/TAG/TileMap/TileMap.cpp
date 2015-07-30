@@ -4,7 +4,7 @@
 #include "ResourcePath.hpp"
 
 #include "SceneNode.hpp"
-#include "Square.hpp"
+//#include "Square.hpp"
 
 #include <algorithm>
 #include <sstream>
@@ -27,6 +27,7 @@ TileMap::TileMap(sf::Uint8 patchSize)
  , mTileInfo()
  , mCachedImages()
  , mFailedImage(false)
+ , mQuadTreeAvailable(false)
 {
     // reserve some space
     mLayers.reserve(5);
@@ -63,11 +64,19 @@ void TileMap::draw(sf::RenderTarget& rt, MapLayer::DrawType type, bool debug)
                 drawLayer(rt, layer, debug);
             }
         case MapLayer::Debug :
-            for(auto& l : mLayers)
+            for(auto layer : mLayers)
             {
+                if(layer.type == tmx::ObjectGroup)
+                {
+                    for(const auto& object : layer.objects)
+                    {
+                        if(mBounds.intersects(object.getAABB()))
+                            object.drawDebugShape(rt);
+                    }
+                }
             }
             rt.draw(mGridVertices);
-            //rt.draw(mRootNode);
+            rt.draw(mRootNode);
             break;
     }
 }
@@ -81,6 +90,15 @@ void TileMap::draw(sf::RenderTarget& rt, sf::Uint16 index, bool debug)
 void TileMap::drawLayer(sf::RenderTarget& rt, MapLayer& layer, bool debug)
 {
     rt.draw(layer);
+    
+    if(debug && layer.type == tmx::ObjectGroup)
+    {
+        for(const auto& object : layer.objects)
+            if(mBounds.intersects(object.getAABB()))
+            {
+                object.drawDebugShape(rt);
+            }
+    }
 }
 
 void TileMap::draw(sf::RenderTarget& rt, sf::RenderStates states) const
@@ -132,6 +150,30 @@ void TileMap::setDrawingBounds(const sf::View& view)
 			layer.cull(mBounds);
 	}
 	mLastViewPos = view.getCenter();
+}
+
+void TileMap::updateQuadTree(const sf::FloatRect& rootArea)
+{
+    mRootNode.clear(rootArea);
+    for(const auto& layer : mLayers)
+    {
+        for(const auto& object : layer.objects)
+        {
+            mRootNode.insert(object);
+        }
+    }
+    mQuadTreeAvailable = true;
+}
+
+std::vector<MapObject*> TileMap::QueryQuadTree(const sf::FloatRect& testArea)
+{
+    // quad tree must be updated at least once with udateQuadTree before we call this
+    assert(mQuadTreeAvailable);
+    return mRootNode.retrieve(testArea);
+}
+    
+bool TileMap::quadTreeAvailable() const
+{
 }
     
 unsigned int TileMap::getTileWidth() const
@@ -235,9 +277,19 @@ bool TileMap::loadMap(const std::string& filename)
         }
         else if(name == "imagelayer")
         {
+            if(!parsetImageLayer(currentNode))
+            {
+                unLoad();
+                return false;
+            }
         }
         else if(name == "objectgroup")
         {
+            if(!parseObjectGroup(currentNode))
+            {
+                unLoad();
+                return false;
+            }
         }
         currentNode = currentNode.next_sibling();
     }
@@ -561,6 +613,257 @@ bool TileMap::parseLayer(const pugi::xml_node& layerNode)
     // TODO convert layer tile coords to isometric if needed
     
     mLayers.push_back(layer);
+    return true;
+}
+
+bool TileMap::parseObjectGroup(const pugi::xml_node& groupNode)
+{
+    LOG_INF("Found object layer " + std::string(groupNode.attribute("name").as_string()));
+    
+    pugi::xml_node objectNode;
+    if(!(objectNode = groupNode.child("object")))
+    {
+        LOG_WRN("Object froup contains no objects");
+        return true;
+    }
+    
+    // add layer to map layers.
+    MapLayer layer(tmx::ObjectGroup);
+    
+    layer.name = groupNode.attribute("name").as_string();
+    if(groupNode.attribute("opacity")) layer.opacity = groupNode.attribute("opacity").as_float();
+    if(pugi::xml_node propertiesNode = groupNode.child("properties"))
+    {
+        parseLayerProperties(propertiesNode, layer);
+    }
+    
+    // NOTE we push layer onto the vector at the end of the function in case we add any objects
+    // with tile data to the layer's tiles property.
+    
+    // parse all object nodes into MapObjects
+    while(objectNode)
+    {
+        if(!objectNode.attribute("x") || !objectNode.attribute("y"))
+        {
+            LOG_ERR("Object missing position data. Map not loaded.");
+            unLoad();
+            return false;
+        }
+        MapObject object;
+        
+        // set position
+        sf::Vector2f position(objectNode.attribute("x").as_float(),
+                              objectNode.attribute("y").as_float());
+        object.setPosition(position);
+        
+        // set size if specified
+        if(objectNode.attribute("width") && objectNode.attribute("height"))
+        {
+            sf::Vector2f size(objectNode.attribute("width").as_float(),
+                              objectNode.attribute("height").as_float());
+            if(objectNode.child("ellipse"))
+            {
+                // add points to make ellipse
+                const float x = size.x / 2.f;
+                const float y = size.y / 2.f;
+                const float tau = 6.283185f;
+                const float step = tau / 16.f; // number of points to make up ellipse
+                for(float angle = 0.f; angle < tau; angle += step)
+                {
+                    sf::Vector2f point(x + x * cos(angle), y + y * sin(angle));
+                    object.addPoint(point);
+                }
+                
+                if(size.x == size.y) object.setShapeType(Circle);
+                else object.setShapeType(Ellipse);
+            }
+            else // add points for rectangle to use in intersection testing
+            {
+                object.addPoint(sf::Vector2f());
+                object.addPoint(sf::Vector2f(size.x, 0.f));
+                object.addPoint(sf::Vector2f(size.x, size.y));
+                object.addPoint(sf::Vector2f(0.f, size.y));
+            }
+            object.setSize(size);
+        }
+        // else parse poly points
+        else if(objectNode.child("polygon") || objectNode.child("polyline"))
+        {
+            if(objectNode.child("polygon"))
+                object.setShapeType(Polygon);
+            else 
+                object.setShapeType(Polyline);
+            
+            // split coords into pairs
+            if(objectNode.first_child().attribute("points"))
+            {
+                LOG_INF("Processing poly shape...");
+                std::string pointlist = objectNode.first_child().attribute("points").as_string();
+                std::stringstream stream(pointlist);
+                std::vector<std::string> points;
+                std::string pointstring;
+                while(std::getline(stream, pointstring, ' '))
+                    points.push_back(pointstring);
+                    
+                // parse each pair into sf::vector2i
+                for(unsigned int i = 0; i < points.size(); i++)
+                {
+                    std::vector<float> coords;
+                    std::stringstream coordstream(points[i]);
+                    
+                    float j;
+                    while(coordstream >> j)
+                    {
+                        coords.push_back(j);
+                        if(coordstream.peek() == ',')
+                            coordstream.ignore();
+                    }
+                    object.addPoint(sf::Vector2f(coords[0], coords[1]));
+                }
+            }
+            else
+            {
+                LOG_WRN("Points for poylgon or polyline object are missing");
+            }
+        }
+        else if(!objectNode.attribute("gid")) // invalid attributes
+        {
+            LOG_WRN("Objects with no parameters found, skipping...");
+            objectNode = objectNode.next_sibling("object");
+            continue;
+        }
+        
+        // parse object node property values
+        if(pugi::xml_node propertiesNode = objectNode.child("properties"))
+        {
+            pugi::xml_node propertyNode = propertiesNode.child("property");
+            while(propertyNode)
+            {
+                std::string name = propertyNode.attribute("name").as_string();
+                std::string value = propertyNode.attribute("value").as_string();
+                object.setProperty(name, value);
+                
+                LOG_INF("Set object property " + name + " with value " + value);
+                propertyNode = propertyNode.next_sibling("property");
+            }
+        }
+        
+        //set object properties
+        if(objectNode.attribute("name")) object.setName(objectNode.attribute("name").as_string());
+        if(objectNode.attribute("type")) object.setType(objectNode.attribute("type").as_string());
+        //if(objectNode.attribute("rotation")) TODO handle rotation attribute
+        if(objectNode.attribute("visible")) object.setVisible(objectNode.attribute("visible").as_bool());
+        if(objectNode.attribute("gid"))
+        {
+            sf::Uint32 gid = objectNode.attribute("gid").as_int();
+            
+            LOG_INF("Found object with tile GID " + gid);
+            object.move(0.f, static_cast<float>(-mTileHeight)); // offset for tile origins being at the bottom in tiled.
+            const sf::Uint16 x = static_cast<sf::Uint16>(object.getPosition().x / mTileWidth);
+            const sf::Uint16 y = static_cast<sf::Uint16>(object.getPosition().y / mTileHeight);
+            
+            sf::Vector2f offset((object.getPosition().x - (x * mTileWidth)), (object.getPosition().y - (y * mTileHeight)));
+            object.setQuad(addTileToLayer(layer, x, y, gid, offset));
+            object.setShapeType(Tile);
+            
+            TileInfo info = mTileInfo[gid];
+            // create bounding poly
+            float width = static_cast<float>(info.size.x);
+            float height = static_cast<float>(info.size.y);
+            
+            object.addPoint(sf::Vector2f());
+            object.addPoint(sf::Vector2f(width, 0.f));
+            object.addPoint(sf::Vector2f(width, height));
+            object.addPoint(sf::Vector2f(0.f, height));
+            
+            // move object if tile not map tile size
+            if(info.size.y != mTileHeight)
+                object.move(0.f, static_cast<float>(mTileHeight - info.size.y) / 2.f);
+        }
+        object.setParent(layer.name);
+        
+        // call objects create debug shape function with colour / opacity
+        sf::Color debugColor;
+        if(groupNode.attribute("color"))
+        {
+            std::string color = groupNode.attribute("color").as_string();
+            // crop leading hash and pop the last (duplicated) char
+            std::remove(color.begin(), color.end(), '#');
+            color.pop_back();
+            debugColor = colorFromHex(color.c_str());
+        }
+        else
+        {
+            debugColor = sf::Color(127u, 127u, 127u);
+        }
+        debugColor.a = static_cast<sf::Uint8>(255.f * layer.opacity);
+        object.createDebugShape(debugColor);
+        
+        // creates line segments from any available points
+        object.createSegments();
+        
+        // add object to vector
+        layer.objects.push_back(object);
+        objectNode = objectNode.next_sibling("object");
+    }
+    
+    mLayers.push_back(layer);
+    LOG_INF("Processed " + std::to_string(layer.objects.size()) + " object.");
+    return true;
+}
+
+bool TileMap::parsetImageLayer(const pugi::xml_node& imageLayerNode)
+{
+    LOG_INF("Found image layer " + std::string(imageLayerNode.attribute("name").as_string()));
+    
+    pugi::xml_node imageNode;
+    // load image.
+    if(!(imageNode = imageLayerNode.child("image")) || !imageNode.attribute("source"))
+    {
+        LOG_ERR("Image layer " + std::string(imageLayerNode.attribute("name").as_string()) + " missing image source property. Map not loaded.");
+        return false;
+    }
+    
+    std::string imageName = imageNode.attribute("source").as_string();
+    sf::Image image = loadImage(resourcePath() + imageName);
+    if(mFailedImage)
+    {
+        LOG_ERR("Failed to load image at " + imageName);
+        return false;
+    }
+    
+    // set transparency if required
+    if(imageNode.attribute("trans"))
+    {
+        image.createMaskFromColor(colorFromHex(imageNode.attribute("trans").as_string()));
+    }
+    
+    // load image to texture
+    std::unique_ptr<sf::Texture> texture(new sf::Texture);
+    texture->loadFromImage(image);
+    mImageLayerTextures.push_back(std::move(texture));
+    
+    // Add texture to layer as sprite, set layer properties
+    MapTile tile;
+    tile.sprite.setTexture(*mImageLayerTextures.back());
+    
+    MapLayer layer(tmx::ImageLayer);
+    layer.name = imageLayerNode.attribute("name").as_string();
+    if(imageLayerNode.attribute("opacity"))
+    {
+        layer.opacity = imageLayerNode.attribute("opacity").as_float();
+        sf::Uint8 opacity = static_cast<sf::Uint8>(255.f * layer.opacity);
+        tile.sprite.setColor(sf::Color(255u, 255u, 255u, opacity));
+    }
+    layer.tiles.push_back(tile);
+    
+    // parse layer properties
+    if(pugi::xml_node propertiesNode = imageLayerNode.child("properties"))
+        parseLayerProperties(propertiesNode, layer);
+        
+    // push back layer
+    mLayers.push_back(layer);
+    
     return true;
 }
 

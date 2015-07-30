@@ -90,6 +90,9 @@ T dotProduct(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs);
 //  (X and Y components are always zero).
 template <typename T>
 T crossProduct(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs);
+    
+template <typename T>
+T crossProduct(const sf::Vector2<T>& a, const sf::Vector2<T>& b, const sf::Vector2<T>& c);
 
 // Returns the component-wise product of lhs and rhs.
 // Computes (lhs.x*rhs.x, lhs.y*rhs.y). Component-wise multiplications are mainly used for scales.

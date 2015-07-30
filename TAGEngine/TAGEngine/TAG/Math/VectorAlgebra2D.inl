@@ -96,6 +96,14 @@ T crossProduct(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs)
 {
 	return lhs.x * rhs.y - lhs.y * rhs.x;
 }
+    
+template <typename T>
+T crossProduct(const sf::Vector2<T>& a, const sf::Vector2<T>& b, const sf::Vector2<T>& c)
+{
+    sf::Vector2f BA = a - b;
+    sf::Vector2f BC = c - b;
+    return (BA.x * BC.y - BA.y * BC.x);
+}
 
 template <typename T>
 sf::Vector2<T> cwiseProduct(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs)

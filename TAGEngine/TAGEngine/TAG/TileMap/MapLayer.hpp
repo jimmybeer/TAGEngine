@@ -1,6 +1,7 @@
 #pragma once
 
 // https://github.com/fallahn/sfml-tmxloader/blob/master/include/tmx/MapLayer.h
+#include "MapObject.hpp"
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Vertex.hpp>
@@ -85,8 +86,8 @@ public:
     std::string name;
     float opacity;
     bool visible;
-    //MapTiles tiles;
-    //MapObjects objects;
+    MapTiles tiles;
+    MapObjects objects;
     tmx::MapLayerType type;
     std::map<std::string, std::string> properties;
 

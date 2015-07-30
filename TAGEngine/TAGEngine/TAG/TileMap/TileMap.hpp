@@ -2,8 +2,9 @@
 
 // https://github.com/fallahn/sfml-tmxloader/tree/master/src
 
-#include "Tileset.hpp"
 #include "MapLayer.hpp"
+#include "MapObject.hpp"
+#include "QuadTree.hpp"
 
 #include "pugixml.hpp"
 
@@ -63,6 +64,15 @@ public:
 	bool loadMap(const std::string& filename);
     void unLoad();
     
+    // Updates the map's quad tree. Not necessary when not querying the quad tree.
+    // root area is the area covered by the root node, for example the screen size.
+    void updateQuadTree(const sf::FloatRect& rootArea);
+    // Queries the quad tree and returns a vector of objects contained by nodes enclosing 
+    // or intersecting testArea
+    std::vector<MapObject*> QueryQuadTree(const sf::FloatRect& testArea);
+    
+    bool quadTreeAvailable() const;
+    
 	//sets the shader property of a layer's rendering states member
     void setLayerShader(sf::Uint16 layerId, const sf::Shader& shader);
     
@@ -79,6 +89,8 @@ private:
     bool parseMapNode(const pugi::xml_node& mapNode);
     bool parseTilesets(const pugi::xml_node& mapNode);
     bool parseLayer(const pugi::xml_node& layerNode);
+    bool parseObjectGroup(const pugi::xml_node& groupNode);
+    bool parsetImageLayer(const pugi::xml_node& imageLayerNode);
     void parseLayerProperties(const pugi::xml_node& propertiesNode, MapLayer& destLayer);
     bool processTiles(const pugi::xml_node& tilesetNode);
     
@@ -105,7 +117,7 @@ private:
     
 	mutable std::vector<MapLayer> mLayers;
     std::map<std::string, std::string> mProperties;
-    
+    std::vector<std::unique_ptr<sf::Texture>> mImageLayerTextures;
     std::vector<std::unique_ptr<sf::Texture>> mTilesetTextures;
     const sf::Uint8 mPatchSize;
     
@@ -119,6 +131,10 @@ private:
     };
     std::vector<TileInfo> mTileInfo; // stores information on all the tilesets for creating vertex arrays.
     sf::VertexArray mGridVertices; //used to draw map grid in debug
+    
+    bool mQuadTreeAvailable;
+    // root node for quad tree partition
+    QuadTreeRoot mRootNode;
     
     // Caches loaded images to prevent loading the same tileset more than once
     sf::Image& loadImage(const std::string& imageName);
